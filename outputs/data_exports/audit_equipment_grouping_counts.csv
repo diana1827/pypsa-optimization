@@ -1,0 +1,5 @@
+category_plot,service_scope,equipment_count
+pumping,shared,2
+thermal_conditioning,shared,3
+ventilation,shared,1
+ventilation,zone,54

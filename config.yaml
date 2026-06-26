@@ -1,1 +1,16 @@
 data_path: data
+
+optimization:
+  grid_price_col: Grid
+
+  hvac_categories:
+    - ventilation
+    - pumping
+    - cooling
+
+  temperature_target_mode: cooling
+
+  default_tmin: 22.0
+  default_tmax: 26.0
+
+  hvac_max_multiplier: 1.0

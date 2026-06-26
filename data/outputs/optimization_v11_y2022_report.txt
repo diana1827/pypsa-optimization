@@ -1,0 +1,835 @@
+BASELINE
+- price_variation_ok: True
+- price_min_eur_kWh: 0.0
+- price_max_eur_kWh: 0.651
+- price_mean_eur_kWh: 0.16787487557077624
+- objective_eur: 7505.176047957504
+- cost_eur: 7505.176047957504
+- energy_kwh_total: 45567.34404217794
+- energy_kwh_cooling: 13241.318083523303
+- energy_kwh_ventilation: 29115.22123315228
+- energy_kwh_pumping: 3210.804725502352
+- n_snapshots: 8760
+- aggregation_mode: year_by_weeks
+
+BASELINE_MENSAL
+ year  month month_label    cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping  price_mean_eur_kWh  price_min_eur_kWh  price_max_eur_kWh  n_snapshots
+ 2022      1     2022-01  692.700111       3249.465567          580.094596             2442.461936          226.909035            0.201895            0.01400            0.29733          744
+ 2022      2     2022-02  618.101356       3070.126468          528.538574             2325.139180          216.448713            0.200720            0.07000            0.35000          672
+ 2022      3     2022-03 1013.039505       3518.496205          620.153857             2674.444491          223.897857            0.282912            0.00000            0.65100          744
+ 2022      4     2022-04  557.348636       2983.142157          656.766307             2215.337803          111.038047            0.192010            0.00103            0.31932          720
+ 2022      5     2022-05  700.244557       3826.750750         1075.865367             2562.791502          188.093882            0.187151            0.00103            0.26588          744
+ 2022      6     2022-06  711.933673       4391.873469         1676.297707             2333.413704          382.162058            0.169825            0.05000            0.26260          720
+ 2022      7     2022-07  678.119579       4684.272111         1831.965984             2449.986141          402.319986            0.143805            0.07809            0.22110          744
+ 2022      8     2022-08  689.844942       4720.073788         1854.918695             2443.677013          421.478081            0.157266            0.02509            0.25307          744
+ 2022      9     2022-09  653.375338       4971.695693         1987.484841             2563.313319          420.897532            0.141250            0.00144            0.30000          720
+ 2022     10     2022-10  478.522685       3782.161788         1221.457696             2332.840281          227.863811            0.127203            0.00411            0.28000          744
+ 2022     11     2022-11  390.325552       3233.373146          614.659465             2443.932126          174.781555            0.115379            0.00411            0.21774          720
+ 2022     12     2022-12  321.620115       3135.912900          593.114994             2327.883738          214.914169            0.096552            0.00000            0.25668          744
+
+BASELINE_SEMANAL
+ iso_year  iso_week   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping
+     2021        52   5.245094         40.265061           38.631310                1.633751            0.000000
+     2022         1 148.240077        768.146526          133.071204              581.325258           53.750064
+     2022         2 167.927724        763.588357          128.350540              581.125639           54.112178
+     2022         3 159.792016        765.702395          130.378841              581.211376           54.112178
+     2022         4 178.156082        766.469168          131.114861              581.242128           54.112178
+     2022         5 161.278523        763.964344          128.726508              581.125657           54.112178
+     2022         6 157.777076        767.837798          132.426588              581.299032           54.112178
+     2022         7 137.232725        766.649510          131.274925              581.262407           54.112178
+     2022         8 157.476658        771.075863          135.536867              581.426818           54.112178
+     2022         9 227.715448        773.178169          138.344983              581.554554           53.278632
+     2022        10 317.759868        771.668462          137.356520              581.499276           52.812666
+     2022        11 187.035102        770.872385          139.871586              581.611138           49.389661
+     2022        12 179.939692        769.088695          142.478135              581.730897           44.879662
+     2022        13 179.427755        769.954122          147.411239              581.904742           40.638142
+     2022        14 164.131814        764.374952          156.054722              582.272595           26.047635
+     2022        15 127.311970        641.609513          157.220405              467.167692           17.221415
+     2022        16  91.405137        765.582060          149.587434              582.027522           33.967105
+     2022        17 137.250974        643.261992          148.881126              466.857444           27.523422
+     2022        18 140.758700        759.250643          163.451266              582.541893           13.257484
+     2022        19 143.153678        768.101525          156.194954              582.308848           29.597722
+     2022        20 150.708073        822.185511          199.174017              582.102189           40.909305
+     2022        21 157.159028        922.086042          273.610391              582.462469           66.013182
+     2022        22 220.601246       1132.157852          453.525264              582.842115           95.790473
+     2022        23 143.275224        798.953004          255.888996              467.431464           75.632545
+     2022        24 205.280562       1141.983014          597.212893              468.137743           76.632378
+     2022        25 148.396195       1095.952018          417.256630              582.904916           95.790473
+     2022        26 132.511661        990.525170          311.979204              582.755493           95.790473
+     2022        27 140.802410       1000.823443          322.185677              582.847293           95.790473
+     2022        28 183.958710       1201.067783          522.276519              583.000791           95.790473
+     2022        29 144.368491       1069.552372          390.926140              582.835759           95.790473
+     2022        30 175.409703       1178.198977          499.282646              583.125858           95.790473
+     2022        31 136.518397        988.104037          337.106898              555.206666           95.790473
+     2022        32 171.937111       1233.505691          582.102178              555.613040           95.790473
+     2022        33 102.409717        830.001640          307.730133              445.639129           76.632378
+     2022        34 157.200065        964.581155          313.650899              555.139783           95.790473
+     2022        35 193.835117       1153.205330          491.007585              566.407272           95.790473
+     2022        36 150.738520       1136.533462          458.008159              582.734830           95.790473
+     2022        37 173.627699       1190.308982          511.632236              582.886273           95.790473
+     2022        38 151.856030       1024.859451          346.711344              582.575339           95.572767
+     2022        39 111.453978       1219.532747          541.337262              582.767855           95.427630
+     2022        40 124.559945        866.343349          326.309510              467.339514           72.694326
+     2022        41 164.371894       1186.599537          508.824671              582.661699           95.113166
+     2022        42  75.015244        770.487525          162.142050              582.519208           25.826267
+     2022        43  84.702633        765.697933          155.110621              582.260406           28.326905
+     2022        44  89.819758        641.178842          148.677111              466.862670           25.639061
+     2022        45  97.864674        768.151198          146.091345              581.870824           40.189029
+     2022        46  84.373073        766.361626          142.676283              581.740401           41.944942
+     2022        47  86.827223        765.625362          140.564105              581.633891           43.427366
+     2022        48  82.178698        642.051251          135.587256              466.293902           40.170094
+     2022        49 106.118930        640.734177          131.339663              466.104771           43.289743
+     2022        50  96.976492        768.231855          132.796718              581.322959           54.112178
+     2022        51  49.248078        771.218586          136.699134              581.482685           53.036767
+     2022        52  42.055357        749.903580          115.530530              580.583358           53.789692
+
+RESUMO GLOBAL
+       scenario solver_status                                          energy_mode    cost_eur  delta_cost_eur  delta_cost_percent  energy_kwh_total  delta_energy_kwh  delta_energy_percent  thermal_mae_C_mean  thermal_violation_degC_sum
+    medium_flex       optimal                            bounded_hourly_modulation 6493.101199    -1012.074849          -13.485025      39369.143162       -6198.20088            -13.602287            2.436438               249454.021713
+thermal_inertia       optimal                       preserve_total_energy[cooling] 6733.989966     -771.186082          -10.275390      41692.658193       -3874.68585             -8.503208            2.439100               236900.917162
+       low_flex       optimal                            bounded_hourly_modulation 6999.138623     -506.037425           -6.742512      42468.243602       -3099.10044             -6.801143            2.437809               262778.767913
+ price_response       optimal preserve_total_energy[cooling, pumping, ventilation] 7336.862445     -168.313603           -2.242634      45567.344042           0.00000              0.000000            2.439124               269755.122189
+
+LOW_FLEX
+- price_variation_ok: True
+- price_min_eur_kWh: 0.0
+- price_max_eur_kWh: 0.651
+- price_mean_eur_kWh: 0.16787487557077624
+- objective_eur: 6999.138623306133
+- cost_eur: 6999.138623306133
+- energy_kwh_total: 42468.24360219171
+- energy_kwh_cooling: 11919.020332042543
+- energy_kwh_ventilation: 27659.49901719705
+- energy_kwh_pumping: 2889.7242529521172
+- n_snapshots: 8760
+- solver_status: optimal
+- energy_mode: bounded_hourly_modulation
+- thermal_coefficients_count: 40
+- thermal_low_flex_mae_C_mean: 2.4378090112827606
+- thermal_low_flex_violation_degC_sum: 262778.76791340683
+
+MENSAL
+ year  month month_label   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping  price_mean_eur_kWh  price_min_eur_kWh  price_max_eur_kWh  n_snapshots
+ 2022      1     2022-01 649.763778       3046.642107          522.085137             2320.338839          204.218131            0.201895            0.01400            0.29733          744
+ 2022      2     2022-02 579.694211       2879.370780          475.684716             2208.882221          194.803842            0.200720            0.07000            0.35000          672
+ 2022      3     2022-03 950.338824       3300.453461          558.221367             2540.724022          201.508072            0.282912            0.00000            0.65100          744
+ 2022      4     2022-04 522.153841       2795.594831          591.089676             2104.570913           99.934242            0.192010            0.00103            0.31932          720
+ 2022      5     2022-05 653.551227       3572.215250          968.278830             2434.651927          169.284493            0.187151            0.00103            0.26588          744
+ 2022      6     2022-06 659.341736       4069.356807         1508.667936             2216.743019          343.945852            0.169825            0.05000            0.26260          720
+ 2022      7     2022-07 627.938168       4338.344207         1648.769386             2327.486834          362.087987            0.143805            0.07809            0.22110          744
+ 2022      8     2022-08 638.409163       4370.250260         1669.426825             2321.493162          379.330273            0.157266            0.02509            0.25307          744
+ 2022      9     2022-09 605.011652       4602.691789         1788.736357             2435.147653          378.807779            0.141250            0.00144            0.30000          720
+ 2022     10     2022-10 445.168879       3520.587623         1099.311926             2216.198267          205.077430            0.127203            0.00411            0.28000          744
+ 2022     11     2022-11 366.191675       3032.232438          553.193519             2321.735519          157.303400            0.115379            0.00411            0.21774          720
+ 2022     12     2022-12 301.575470       2940.504048          535.554656             2211.526641          193.422752            0.096552            0.00000            0.25668          744
+
+MENSAL_VS_BASELINE
+ year  month month_label  cost_eur_baseline  energy_kwh_total_baseline  energy_kwh_cooling_baseline  energy_kwh_ventilation_baseline  energy_kwh_pumping_baseline  price_mean_eur_kWh_baseline  price_min_eur_kWh_baseline  price_max_eur_kWh_baseline  n_snapshots_baseline  cost_eur_low_flex  energy_kwh_total_low_flex  energy_kwh_cooling_low_flex  energy_kwh_ventilation_low_flex  energy_kwh_pumping_low_flex  price_mean_eur_kWh_low_flex  price_min_eur_kWh_low_flex  price_max_eur_kWh_low_flex  n_snapshots_low_flex  delta_cost_eur  delta_percent_cost_eur  delta_energy_kwh_total  delta_percent_energy_kwh_total  delta_energy_kwh_cooling  delta_percent_energy_kwh_cooling  delta_energy_kwh_ventilation  delta_percent_energy_kwh_ventilation  delta_energy_kwh_pumping  delta_percent_energy_kwh_pumping
+ 2022      1     2022-01         692.700111                3249.465567                   580.094596                      2442.461936                   226.909035                     0.201895                     0.01400                     0.29733                   744         649.763778                3046.642107                   522.085137                      2320.338839                   204.218131                     0.201895                     0.01400                     0.29733                   744      -42.936333               -6.198401             -202.823460                       -6.241748                -58.009460                        -10.000000                   -122.123097                             -5.000000                -22.690903                             -10.0
+ 2022      2     2022-02         618.101356                3070.126468                   528.538574                      2325.139180                   216.448713                     0.200720                     0.07000                     0.35000                   672         579.694211                2879.370780                   475.684716                      2208.882221                   194.803842                     0.200720                     0.07000                     0.35000                   672      -38.407145               -6.213729             -190.755688                       -6.213284                -52.853857                        -10.000000                   -116.256959                             -5.000000                -21.644871                             -10.0
+ 2022      3     2022-03        1013.039505                3518.496205                   620.153857                      2674.444491                   223.897857                     0.282912                     0.00000                     0.65100                   744         950.338824                3300.453461                   558.221367                      2540.724022                   201.508072                     0.282912                     0.00000                     0.65100                   744      -62.700681               -6.189362             -218.042744                       -6.197044                -61.932490                         -9.986633                   -133.720468                             -4.999934                -22.389786                             -10.0
+ 2022      4     2022-04         557.348636                2983.142157                   656.766307                      2215.337803                   111.038047                     0.192010                     0.00103                     0.31932                   720         522.153841                2795.594831                   591.089676                      2104.570913                    99.934242                     0.192010                     0.00103                     0.31932                   720      -35.194795               -6.314682             -187.547326                       -6.286905                -65.676631                        -10.000000                   -110.766890                             -5.000000                -11.103805                             -10.0
+ 2022      5     2022-05         700.244557                3826.750750                  1075.865367                      2562.791502                   188.093882                     0.187151                     0.00103                     0.26588                   744         653.551227                3572.215250                   968.278830                      2434.651927                   169.284493                     0.187151                     0.00103                     0.26588                   744      -46.693330               -6.668146             -254.535500                       -6.651478               -107.586537                        -10.000000                   -128.139575                             -5.000000                -18.809388                             -10.0
+ 2022      6     2022-06         711.933673                4391.873469                  1676.297707                      2333.413704                   382.162058                     0.169825                     0.05000                     0.26260                   720         659.341736                4069.356807                  1508.667936                      2216.743019                   343.945852                     0.169825                     0.05000                     0.26260                   720      -52.591937               -7.387196             -322.516662                       -7.343487               -167.629771                        -10.000000                   -116.670685                             -5.000000                -38.216206                             -10.0
+ 2022      7     2022-07         678.119579                4684.272111                  1831.965984                      2449.986141                   402.319986                     0.143805                     0.07809                     0.22110                   744         627.938168                4338.344207                  1648.769386                      2327.486834                   362.087987                     0.143805                     0.07809                     0.22110                   744      -50.181411               -7.400083             -345.927904                       -7.384881               -183.196598                        -10.000000                   -122.499307                             -5.000000                -40.231999                             -10.0
+ 2022      8     2022-08         689.844942                4720.073788                  1854.918695                      2443.677013                   421.478081                     0.157266                     0.02509                     0.25307                   744         638.409163                4370.250260                  1669.426825                      2321.493162                   379.330273                     0.157266                     0.02509                     0.25307                   744      -51.435779               -7.456136             -349.823528                       -7.411400               -185.491869                        -10.000000                   -122.183851                             -5.000000                -42.147808                             -10.0
+ 2022      9     2022-09         653.375338                4971.695693                  1987.484841                      2563.313319                   420.897532                     0.141250                     0.00144                     0.30000                   720         605.011652                4602.691789                  1788.736357                      2435.147653                   378.807779                     0.141250                     0.00144                     0.30000                   720      -48.363686               -7.402129             -369.003903                       -7.422094               -198.748484                        -10.000000                   -128.165666                             -5.000000                -42.089753                             -10.0
+ 2022     10     2022-10         478.522685                3782.161788                  1221.457696                      2332.840281                   227.863811                     0.127203                     0.00411                     0.28000                   744         445.168879                3520.587623                  1099.311926                      2216.198267                   205.077430                     0.127203                     0.00411                     0.28000                   744      -33.353807               -6.970162             -261.574165                       -6.915996               -122.145770                        -10.000000                   -116.642014                             -5.000000                -22.786381                             -10.0
+ 2022     11     2022-11         390.325552                3233.373146                   614.659465                      2443.932126                   174.781555                     0.115379                     0.00411                     0.21774                   720         366.191675                3032.232438                   553.193519                      2321.735519                   157.303400                     0.115379                     0.00411                     0.21774                   720      -24.133877               -6.183012             -201.140708                       -6.220770                -61.465947                        -10.000000                   -122.196606                             -5.000000                -17.478156                             -10.0
+ 2022     12     2022-12         321.620115                3135.912900                   593.114994                      2327.883738                   214.914169                     0.096552                     0.00000                     0.25668                   744         301.575470                2940.504048                   535.554656                      2211.526641                   193.422752                     0.096552                     0.00000                     0.25668                   744      -20.044645               -6.232398             -195.408852                       -6.231323                -57.560338                         -9.704752                   -116.357097                             -4.998407                -21.491417                             -10.0
+
+SEMANAL
+ iso_year  iso_week   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping solver_status
+     2021        52   4.731226         36.320242           34.768179                1.552063            0.000000       optimal
+     2022         1 139.123179        720.398136          119.764084              552.258995           48.375058       optimal
+     2022         2 157.561814        716.285804          115.515486              552.069357           48.700961       optimal
+     2022         3 149.890248        718.192724          117.340957              552.150807           48.700961       optimal
+     2022         4 167.118450        718.884358          118.003375              552.180022           48.700961       optimal
+     2022         5 151.317788        716.624193          115.853857              552.069375           48.700961       optimal
+     2022         6 148.012302        720.118970          119.183929              552.234080           48.700961       optimal
+     2022         7 128.738917        719.047680          118.147432              552.199287           48.700961       optimal
+     2022         8 147.575498        723.039618          121.983181              552.355477           48.700961       optimal
+     2022         9 213.363436        724.938080          124.510485              552.476826           47.950769       optimal
+     2022        10 298.198905        723.576580          123.620868              552.424312           47.531400       optimal
+     2022        11 175.434609        722.865703          125.884427              552.530581           44.450695       optimal
+     2022        12 168.781169        721.351022          128.313217              552.646109           40.391696       optimal
+     2022        13 168.241675        722.053947          132.670115              552.809505           36.574328       optimal
+     2022        14 153.941002        717.051086          140.449250              553.158965           23.442871       optimal
+     2022        15 119.270018        600.806946          141.498364              443.809308           15.499274       optimal
+     2022        16  85.667787        718.125230          134.628691              552.926145           30.570394       optimal
+     2022        17 128.513284        602.278665          133.993014              443.514572           24.771079       optimal
+     2022        18 132.044069        712.452673          147.106139              553.414799           11.931735       optimal
+     2022        19 134.257807        720.406814          140.575459              553.193406           26.637950       optimal
+     2022        20 140.935853        769.072069          179.256616              552.997079           36.818374       optimal
+     2022        21 146.422815        859.000562          246.249352              553.339346           59.411864       optimal
+     2022        22 204.121624       1048.084172          408.172737              553.700009           86.211426       optimal
+     2022        23 133.092520        742.429277          230.300096              444.059891           68.069291       optimal
+     2022        24 189.007542       1051.191600          537.491604              444.730856           68.969140       optimal
+     2022        25 137.444940       1015.502062          375.530967              553.759670           86.211426       optimal
+     2022        26 123.096689        920.610428          280.781284              553.617718           86.211426       optimal
+     2022        27 130.780529        929.883464          289.967110              553.704929           86.211426       optimal
+     2022        28 170.042467       1110.111044          470.048867              553.850752           86.211426       optimal
+     2022        29 133.811601        991.738923          351.833526              553.693971           86.211426       optimal
+     2022        30 162.242023       1089.535372          449.354381              553.969565           86.211426       optimal
+     2022        31 126.659509        917.053967          303.396209              527.446332           86.211426       optimal
+     2022        32 158.565373       1137.935774          523.891961              527.832388           86.211426       optimal
+     2022        33  94.787132        769.283432          276.957119              423.357172           68.969140       optimal
+     2022        34 145.948038        895.880029          282.285809              527.382794           86.211426       optimal
+     2022        35 179.184362       1066.205161          441.906826              538.086909           86.211426       optimal
+     2022        36 139.460057       1052.016857          412.207343              553.598089           86.211426       optimal
+     2022        37 160.611995       1100.422397          460.469012              553.741959           86.211426       optimal
+     2022        38 141.021589        951.502273          312.040210              553.446572           86.015491       optimal
+     2022        39 102.916365       1126.717865          487.203535              553.629462           85.884867       optimal
+     2022        40 115.535931        803.075990          293.678559              443.972539           65.424893       optimal
+     2022        41 152.024596       1097.072668          457.942204              553.528614           85.601850       optimal
+     2022        42  70.325361        722.564733          145.927845              553.393247           23.243640       optimal
+     2022        43  79.439069        718.241160          139.599559              553.147386           25.494215       optimal
+     2022        44  84.173159        600.404091          133.809400              443.519537           23.075155       optimal
+     2022        45  91.812621        720.429619          131.482210              552.777283           36.170126       optimal
+     2022        46  79.195465        718.812484          128.408655              552.653381           37.750448       optimal
+     2022        47  81.465287        718.144520          126.507695              552.552196           39.084629       optimal
+     2022        48  76.887485        601.160821          122.028530              442.979207           36.153084       optimal
+     2022        49  99.467247        599.965998          118.205697              442.799533           38.960768       optimal
+     2022        50  91.036686        720.474818          119.517046              552.256811           48.700961       optimal
+     2022        51  46.285195        723.170862          123.029220              552.408551           47.733090       optimal
+     2022        52  39.554316        705.730641          105.728638              551.591280           48.410722       optimal
+
+COMPARAÇÃO
+                    metric      baseline      low_flex  delta_low_flex_minus_baseline  delta_percent
+                  cost_eur   7505.176048   6999.138623                    -506.037425      -6.742512
+          energy_kwh_total  45567.344042  42468.243602                   -3099.100440      -6.801143
+        energy_kwh_cooling  13241.318084  11919.020332                   -1322.297751      -9.986149
+    energy_kwh_ventilation  29115.221233  27659.499017                   -1455.722216      -4.999867
+        energy_kwh_pumping   3210.804726   2889.724253                    -321.080473     -10.000000
+thermal_violation_degC_sum 262948.914413 262778.767913                    -170.146499            NaN
+   thermal_pred_mae_C_mean      2.439199      2.437809                      -0.001390            NaN
+
+INTERPRETAÇÃO
+Período analisado: ano 2022.
+Cenário analisado: low_flex.
+Modo energético do cenário: bounded_hourly_modulation.
+A variação horária dos preços foi verificada explicitamente (mín=0.00000 EUR/kWh; máx=0.65100 EUR/kWh; média=0.16787 EUR/kWh).
+Baseline: custo HVAC = 7505.18 EUR; energia HVAC = 45567.34 kWh.
+low_flex: custo HVAC = 6999.14 EUR; energia HVAC = 42468.24 kWh.
+Variação de custo low_flex vs baseline = -506.04 EUR (-6.74%).
+Variação de energia low_flex vs baseline = -3099.10 kWh (-6.80%).
+Análise térmica extra: violação prevista baseline = 262948.9144 °C·h; low_flex = 262778.7679 °C·h; MAE térmico médio baseline = 2.4392 °C; low_flex = 2.4378 °C.
+Solver: optimal.
+Coeficientes térmicos anuais estimados para 40 zona(s): ā=0.9749, b̄=0.0097, ḡ=0.1466, c̄=0.4080, R² médio=0.9500.
+Métodos de estimação utilizados: {'robust_bounded_least_squares_with_positive_g_floor': 37, 'robust_bounded_least_squares': 3}.
+Resumo mensal guardado nos outputs: mês de menor custo neste cenário = 2022-12 (301.58 EUR; 2940.50 kWh).
+Leitura recomendada: a redução de custo/energia é interpretada como flexibilidade mecânico-elétrica dentro das bandas admissíveis do cenário, enquanto a análise térmica funciona como diagnóstico ex-post da plausibilidade da resposta prevista das zonas.
+
+TENTATIVAS DO SOLVER
+   block scenario  success  status                                                         message  objective_solver  runtime_s  n_variables  n_eq  n_ub
+2021-W52 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)          4.735171   0.006472          432   144     0
+2022-W01 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        139.170928   0.020093         1512   504     0
+2022-W02 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        157.609117   0.018509         1512   504     0
+2022-W03 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        149.937757   0.018736         1512   504     0
+2022-W04 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        167.166035   0.018902         1512   504     0
+2022-W05 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        151.365128   0.019319         1512   504     0
+2022-W06 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        148.060020   0.018616         1512   504     0
+2022-W07 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        128.786518   0.018889         1512   504     0
+2022-W08 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        147.623534   0.018691         1512   504     0
+2022-W09 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        213.411677   0.019230         1512   504     0
+2022-W10 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        298.246996   0.018668         1512   504     0
+2022-W11 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        175.482616   0.019478         1512   504     0
+2022-W12 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        168.828907   0.019519         1512   504     0
+2022-W13 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        168.289575   0.019098         1512   504     0
+2022-W14 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        153.988326   0.019317         1512   504     0
+2022-W15 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        119.310820   0.019265         1512   504     0
+2022-W16 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         85.715244   0.019547         1512   504     0
+2022-W17 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        128.554267   0.019350         1512   504     0
+2022-W18 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        132.090867   0.018588         1512   504     0
+2022-W19 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.305501   0.019311         1512   504     0
+2022-W20 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        140.988967   0.018540         1512   504     0
+2022-W21 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        146.485901   0.019670         1512   504     0
+2022-W22 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        204.205698   0.018668         1512   504     0
+2022-W23 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        133.149044   0.018621         1512   504     0
+2022-W24 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        189.098334   0.018633         1512   504     0
+2022-W25 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        137.525390   0.019311         1512   504     0
+2022-W26 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        123.166603   0.018570         1512   504     0
+2022-W27 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        130.851469   0.018536         1512   504     0
+2022-W28 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        170.133424   0.018753         1512   504     0
+2022-W29 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        133.889414   0.020382         1512   504     0
+2022-W30 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        162.330687   0.019743         1512   504     0
+2022-W31 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        126.730559   0.019006         1512   504     0
+2022-W32 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        158.660943   0.019339         1512   504     0
+2022-W33 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         94.847851   0.021016         1512   504     0
+2022-W34 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        146.016739   0.020421         1512   504     0
+2022-W35 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        179.271362   0.019400         1512   504     0
+2022-W36 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        139.544573   0.019249         1512   504     0
+2022-W37 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        160.701882   0.018949         1512   504     0
+2022-W38 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        141.094946   0.018978         1512   504     0
+2022-W39 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        103.009180   0.018689         1512   504     0
+2022-W40 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        115.599199   0.020204         1512   504     0
+2022-W41 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        152.114123   0.019348         1512   504     0
+2022-W42 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         70.373284   0.018660         1512   504     0
+2022-W43 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         79.486526   0.018863         1512   504     0
+2022-W44 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         84.213934   0.018677         1512   504     0
+2022-W45 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         91.860342   0.018695         1512   504     0
+2022-W46 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         79.243015   0.019102         1512   504     0
+2022-W47 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         81.512768   0.018600         1512   504     0
+2022-W48 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         76.928375   0.019189         1512   504     0
+2022-W49 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         99.508015   0.018755         1512   504     0
+2022-W50 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         91.084443   0.019202         1512   504     0
+2022-W51 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         46.333242   0.018809         1512   504     0
+2022-W52 low_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         39.598489   0.015489         1296   432     0
+
+MEDIUM_FLEX
+- price_variation_ok: True
+- price_min_eur_kWh: 0.0
+- price_max_eur_kWh: 0.651
+- price_mean_eur_kWh: 0.16787487557077624
+- objective_eur: 6493.101198654763
+- cost_eur: 6493.101198654763
+- energy_kwh_total: 39369.143162205495
+- energy_kwh_cooling: 10596.722580561785
+- energy_kwh_ventilation: 26203.77680124183
+- energy_kwh_pumping: 2568.6437804018824
+- n_snapshots: 8760
+- solver_status: optimal
+- energy_mode: bounded_hourly_modulation
+- thermal_coefficients_count: 40
+- thermal_medium_flex_mae_C_mean: 2.4364375428445
+- thermal_medium_flex_violation_degC_sum: 249454.02171274397
+
+MENSAL
+ year  month month_label   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping  price_mean_eur_kWh  price_min_eur_kWh  price_max_eur_kWh  n_snapshots
+ 2022      1     2022-01 606.827445       2843.818647          464.075677             2198.215743          181.527228            0.201895            0.01400            0.29733          744
+ 2022      2     2022-02 541.287066       2688.615092          422.830859             2092.625262          173.158971            0.200720            0.07000            0.35000          672
+ 2022      3     2022-03 887.638143       3082.410716          496.288877             2407.003554          179.118286            0.282912            0.00000            0.65100          744
+ 2022      4     2022-04 486.959046       2608.047506          525.413046             1993.804023           88.830437            0.192010            0.00103            0.31932          720
+ 2022      5     2022-05 606.857897       3317.679750          860.692293             2306.512351          150.475105            0.187151            0.00103            0.26588          744
+ 2022      6     2022-06 606.749799       3746.840146         1341.038166             2100.072333          305.729647            0.169825            0.05000            0.26260          720
+ 2022      7     2022-07 577.756758       3992.416303         1465.572788             2204.987527          321.855989            0.143805            0.07809            0.22110          744
+ 2022      8     2022-08 586.973384       4020.426732         1483.934956             2199.309312          337.182464            0.157266            0.02509            0.25307          744
+ 2022      9     2022-09 556.647966       4233.687886         1589.987873             2306.981987          336.718026            0.141250            0.00144            0.30000          720
+ 2022     10     2022-10 411.815072       3259.013459          977.166157             2099.556253          182.291049            0.127203            0.00411            0.28000          744
+ 2022     11     2022-11 342.057798       2831.091730          491.727572             2199.538913          139.825244            0.115379            0.00411            0.21774          720
+ 2022     12     2022-12 281.530825       2745.095196          477.994318             2095.169543          171.931335            0.096552            0.00000            0.25668          744
+
+MENSAL_VS_BASELINE
+ year  month month_label  cost_eur_baseline  energy_kwh_total_baseline  energy_kwh_cooling_baseline  energy_kwh_ventilation_baseline  energy_kwh_pumping_baseline  price_mean_eur_kWh_baseline  price_min_eur_kWh_baseline  price_max_eur_kWh_baseline  n_snapshots_baseline  cost_eur_medium_flex  energy_kwh_total_medium_flex  energy_kwh_cooling_medium_flex  energy_kwh_ventilation_medium_flex  energy_kwh_pumping_medium_flex  price_mean_eur_kWh_medium_flex  price_min_eur_kWh_medium_flex  price_max_eur_kWh_medium_flex  n_snapshots_medium_flex  delta_cost_eur  delta_percent_cost_eur  delta_energy_kwh_total  delta_percent_energy_kwh_total  delta_energy_kwh_cooling  delta_percent_energy_kwh_cooling  delta_energy_kwh_ventilation  delta_percent_energy_kwh_ventilation  delta_energy_kwh_pumping  delta_percent_energy_kwh_pumping
+ 2022      1     2022-01         692.700111                3249.465567                   580.094596                      2442.461936                   226.909035                     0.201895                     0.01400                     0.29733                   744            606.827445                   2843.818647                      464.075677                         2198.215743                      181.527228                        0.201895                        0.01400                        0.29733                      744      -85.872666              -12.396803             -405.646920                      -12.483496               -116.018919                        -20.000000                   -244.246194                            -10.000000                -45.381807                             -20.0
+ 2022      2     2022-02         618.101356                3070.126468                   528.538574                      2325.139180                   216.448713                     0.200720                     0.07000                     0.35000                   672            541.287066                   2688.615092                      422.830859                         2092.625262                      173.158971                        0.200720                        0.07000                        0.35000                      672      -76.814290              -12.427459             -381.511375                      -12.426569               -105.707715                        -20.000000                   -232.513918                            -10.000000                -43.289743                             -20.0
+ 2022      3     2022-03        1013.039505                3518.496205                   620.153857                      2674.444491                   223.897857                     0.282912                     0.00000                     0.65100                   744            887.638143                   3082.410716                      496.288877                         2407.003554                      179.118286                        0.282912                        0.00000                        0.65100                      744     -125.401362              -12.378724             -436.085489                      -12.394087               -123.864981                        -19.973266                   -267.440937                             -9.999869                -44.779571                             -20.0
+ 2022      4     2022-04         557.348636                2983.142157                   656.766307                      2215.337803                   111.038047                     0.192010                     0.00103                     0.31932                   720            486.959046                   2608.047506                      525.413046                         1993.804023                       88.830437                        0.192010                        0.00103                        0.31932                      720      -70.389590              -12.629364             -375.094651                      -12.573811               -131.353261                        -20.000000                   -221.533780                            -10.000000                -22.207609                             -20.0
+ 2022      5     2022-05         700.244557                3826.750750                  1075.865367                      2562.791502                   188.093882                     0.187151                     0.00103                     0.26588                   744            606.857897                   3317.679750                      860.692293                         2306.512351                      150.475105                        0.187151                        0.00103                        0.26588                      744      -93.386659              -13.336292             -509.071000                      -13.302957               -215.173073                        -20.000000                   -256.279150                            -10.000000                -37.618776                             -20.0
+ 2022      6     2022-06         711.933673                4391.873469                  1676.297707                      2333.413704                   382.162058                     0.169825                     0.05000                     0.26260                   720            606.749799                   3746.840146                     1341.038166                         2100.072333                      305.729647                        0.169825                        0.05000                        0.26260                      720     -105.183873              -14.774392             -645.033323                      -14.686974               -335.259541                        -20.000000                   -233.341370                            -10.000000                -76.432412                             -20.0
+ 2022      7     2022-07         678.119579                4684.272111                  1831.965984                      2449.986141                   402.319986                     0.143805                     0.07809                     0.22110                   744            577.756758                   3992.416303                     1465.572788                         2204.987527                      321.855989                        0.143805                        0.07809                        0.22110                      744     -100.362821              -14.800166             -691.855808                      -14.769761               -366.393197                        -20.000000                   -244.998614                            -10.000000                -80.463997                             -20.0
+ 2022      8     2022-08         689.844942                4720.073788                  1854.918695                      2443.677013                   421.478081                     0.157266                     0.02509                     0.25307                   744            586.973384                   4020.426732                     1483.934956                         2199.309312                      337.182464                        0.157266                        0.02509                        0.25307                      744     -102.871557              -14.912272             -699.647056                      -14.822799               -370.983739                        -20.000000                   -244.367701                            -10.000000                -84.295616                             -20.0
+ 2022      9     2022-09         653.375338                4971.695693                  1987.484841                      2563.313319                   420.897532                     0.141250                     0.00144                     0.30000                   720            556.647966                   4233.687886                     1589.987873                         2306.981987                      336.718026                        0.141250                        0.00144                        0.30000                      720      -96.727372              -14.804258             -738.007807                      -14.844187               -397.496968                        -20.000000                   -256.331332                            -10.000000                -84.179506                             -20.0
+ 2022     10     2022-10         478.522685                3782.161788                  1221.457696                      2332.840281                   227.863811                     0.127203                     0.00411                     0.28000                   744            411.815072                   3259.013459                      977.166157                         2099.556253                      182.291049                        0.127203                        0.00411                        0.28000                      744      -66.707614              -13.940324             -523.148330                      -13.831992               -244.291539                        -20.000000                   -233.284028                            -10.000000                -45.572762                             -20.0
+ 2022     11     2022-11         390.325552                3233.373146                   614.659465                      2443.932126                   174.781555                     0.115379                     0.00411                     0.21774                   720            342.057798                   2831.091730                      491.727572                         2199.538913                      139.825244                        0.115379                        0.00411                        0.21774                      720      -48.267754              -12.366025             -402.281417                      -12.441540               -122.931893                        -20.000000                   -244.393213                            -10.000000                -34.956311                             -20.0
+ 2022     12     2022-12         321.620115                3135.912900                   593.114994                      2327.883738                   214.914169                     0.096552                     0.00000                     0.25668                   744            281.530825                   2745.095196                      477.994318                         2095.169543                      171.931335                        0.096552                        0.00000                        0.25668                      744      -40.089290              -12.464796             -390.817704                      -12.462645               -115.120676                        -19.409504                   -232.714195                             -9.996813                -42.982834                             -20.0
+
+SEMANAL
+ iso_year  iso_week   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping solver_status
+     2021        52   4.217357         32.375424           30.905048                1.470376            0.000000       optimal
+     2022         1 130.006281        672.649746          106.456963              523.192732           43.000051       optimal
+     2022         2 147.195904        668.983250          102.680432              523.013075           43.289743       optimal
+     2022         3 139.988479        670.683053          104.303073              523.090238           43.289743       optimal
+     2022         4 156.080818        671.299547          104.891889              523.117916           43.289743       optimal
+     2022         5 141.357053        669.284041          102.981207              523.013092           43.289743       optimal
+     2022         6 138.247527        672.400142          105.941270              523.169129           43.289743       optimal
+     2022         7 120.245109        671.445849          105.019940              523.136167           43.289743       optimal
+     2022         8 137.674338        675.003373          108.429494              523.284136           43.289743       optimal
+     2022         9 199.011425        676.697990          110.675986              523.399098           42.622906       optimal
+     2022        10 278.637941        675.484697          109.885216              523.349348           42.250133       optimal
+     2022        11 163.834116        674.859022          111.897269              523.450024           39.511729       optimal
+     2022        12 157.622646        673.613348          114.148299              523.561320           35.903730       optimal
+     2022        13 157.055595        674.153772          117.928991              523.714268           32.510513       optimal
+     2022        14 143.750189        669.727221          124.843778              524.045335           20.838108       optimal
+     2022        15 111.228066        560.004379          125.776324              420.450923           13.777132       optimal
+     2022        16  79.930437        670.668400          119.669947              523.824769           27.173684       optimal
+     2022        17 119.775594        561.295338          119.104901              420.171700           22.018737       optimal
+     2022        18 123.329438        665.654703          130.761012              524.287704           10.605987       optimal
+     2022        19 125.361936        672.712104          124.955964              524.077963           23.678177       optimal
+     2022        20 131.163633        715.958628          159.339214              523.891970           32.727444       optimal
+     2022        21 135.686602        795.915081          218.888313              524.216222           52.810546       optimal
+     2022        22 187.642003        964.010493          362.820211              524.557904           76.632378       optimal
+     2022        23 122.909817        685.905550          204.711196              420.688317           60.506036       optimal
+     2022        24 172.734522        960.400186          477.770314              421.323969           61.305903       optimal
+     2022        25 126.493685        935.052106          333.805304              524.614424           76.632378       optimal
+     2022        26 113.681716        850.695686          249.583364              524.479944           76.632378       optimal
+     2022        27 120.758648        858.943484          257.748542              524.562564           76.632378       optimal
+     2022        28 156.126225       1019.154306          417.821215              524.700712           76.632378       optimal
+     2022        29 123.254710        913.925473          312.740912              524.552183           76.632378       optimal
+     2022        30 149.074343       1000.871767          399.426117              524.813272           76.632378       optimal
+     2022        31 116.800620        846.003896          269.685519              499.685999           76.632378       optimal
+     2022        32 145.193636       1042.365857          465.681743              500.051736           76.632378       optimal
+     2022        33  87.164548        708.565224          246.184106              401.075216           61.305903       optimal
+     2022        34 134.696011        827.178903          250.920720              499.625805           76.632378       optimal
+     2022        35 164.533607        979.204991          392.806068              509.766545           76.632378       optimal
+     2022        36 128.181593        967.500252          366.406527              524.461347           76.632378       optimal
+     2022        37 147.596291       1010.535813          409.305789              524.597646           76.632378       optimal
+     2022        38 130.187148        878.145095          277.369075              524.317806           76.458214       optimal
+     2022        39  94.378753       1033.902983          433.069809              524.491069           76.342104       optimal
+     2022        40 106.511917        739.808631          261.047608              420.605563           58.155460       optimal
+     2022        41 139.677299       1007.545799          407.059737              524.395529           76.090533       optimal
+     2022        42  65.635478        674.641941          129.713640              524.267287           20.661014       optimal
+     2022        43  74.175504        670.784387          124.088497              524.034365           22.661524       optimal
+     2022        44  78.526560        559.629341          118.941689              420.176403           20.511249       optimal
+     2022        45  85.760568        672.708041          116.873076              523.683742           32.151223       optimal
+     2022        46  74.017857        671.263341          114.141026              523.566361           33.555953       optimal
+     2022        47  76.103351        670.663678          112.451284              523.470502           34.741893       optimal
+     2022        48  71.596272        560.270391          108.469805              419.664512           32.136075       optimal
+     2022        49  92.815565        559.197819          105.071730              419.494294           34.631794       optimal
+     2022        50  85.096880        672.717780          106.237374              523.190663           43.289743       optimal
+     2022        51  43.322311        675.123137          109.359307              523.334417           42.429414       optimal
+     2022        52  37.053275        661.557702           95.926747              522.599202           43.031753       optimal
+
+COMPARAÇÃO
+                    metric      baseline   medium_flex  delta_medium_flex_minus_baseline  delta_percent
+                  cost_eur   7505.176048   6493.101199                      -1012.074849     -13.485025
+          energy_kwh_total  45567.344042  39369.143162                      -6198.200880     -13.602287
+        energy_kwh_cooling  13241.318084  10596.722581                      -2644.595503     -19.972298
+    energy_kwh_ventilation  29115.221233  26203.776801                      -2911.444432      -9.999733
+        energy_kwh_pumping   3210.804726   2568.643780                       -642.160945     -20.000000
+thermal_violation_degC_sum 249795.537797 249454.021713                       -341.516084            NaN
+   thermal_pred_mae_C_mean      2.439199      2.436438                         -0.002762            NaN
+
+INTERPRETAÇÃO
+Período analisado: ano 2022.
+Cenário analisado: medium_flex.
+Modo energético do cenário: bounded_hourly_modulation.
+A variação horária dos preços foi verificada explicitamente (mín=0.00000 EUR/kWh; máx=0.65100 EUR/kWh; média=0.16787 EUR/kWh).
+Baseline: custo HVAC = 7505.18 EUR; energia HVAC = 45567.34 kWh.
+medium_flex: custo HVAC = 6493.10 EUR; energia HVAC = 39369.14 kWh.
+Variação de custo medium_flex vs baseline = -1012.07 EUR (-13.49%).
+Variação de energia medium_flex vs baseline = -6198.20 kWh (-13.60%).
+Análise térmica extra: violação prevista baseline = 249795.5378 °C·h; medium_flex = 249454.0217 °C·h; MAE térmico médio baseline = 2.4392 °C; medium_flex = 2.4364 °C.
+Solver: optimal.
+Coeficientes térmicos anuais estimados para 40 zona(s): ā=0.9749, b̄=0.0097, ḡ=0.1466, c̄=0.4080, R² médio=0.9500.
+Métodos de estimação utilizados: {'robust_bounded_least_squares_with_positive_g_floor': 37, 'robust_bounded_least_squares': 3}.
+Resumo mensal guardado nos outputs: mês de menor custo neste cenário = 2022-12 (281.53 EUR; 2745.10 kWh).
+Leitura recomendada: a redução de custo/energia é interpretada como flexibilidade mecânico-elétrica dentro das bandas admissíveis do cenário, enquanto a análise térmica funciona como diagnóstico ex-post da plausibilidade da resposta prevista das zonas.
+
+TENTATIVAS DO SOLVER
+   block    scenario  success  status                                                         message  objective_solver  runtime_s  n_variables  n_eq  n_ub
+2021-W52 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)          4.225247   0.004420          432   144     0
+2022-W01 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        130.101778   0.019270         1512   504     0
+2022-W02 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        147.290509   0.019394         1512   504     0
+2022-W03 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        140.083498   0.019120         1512   504     0
+2022-W04 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        156.175988   0.018642         1512   504     0
+2022-W05 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        141.451733   0.018675         1512   504     0
+2022-W06 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        138.342965   0.018627         1512   504     0
+2022-W07 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        120.340312   0.018599         1512   504     0
+2022-W08 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        137.770410   0.019509         1512   504     0
+2022-W09 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        199.107905   0.019566         1512   504     0
+2022-W10 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        278.734125   0.018632         1512   504     0
+2022-W11 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        163.930129   0.019000         1512   504     0
+2022-W12 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        157.718121   0.019670         1512   504     0
+2022-W13 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        157.151395   0.018657         1512   504     0
+2022-W14 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        143.844837   0.019485         1512   504     0
+2022-W15 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        111.309671   0.018785         1512   504     0
+2022-W16 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         80.025351   0.019296         1512   504     0
+2022-W17 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        119.857561   0.019553         1512   504     0
+2022-W18 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        123.423034   0.019134         1512   504     0
+2022-W19 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        125.457325   0.019543         1512   504     0
+2022-W20 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        131.269860   0.019315         1512   504     0
+2022-W21 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        135.812773   0.019549         1512   504     0
+2022-W22 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        187.810150   0.019450         1512   504     0
+2022-W23 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        123.022864   0.018667         1512   504     0
+2022-W24 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        172.916105   0.018789         1512   504     0
+2022-W25 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        126.654585   0.019427         1512   504     0
+2022-W26 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        113.821545   0.018818         1512   504     0
+2022-W27 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        120.900528   0.019493         1512   504     0
+2022-W28 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        156.308138   0.018945         1512   504     0
+2022-W29 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        123.410337   0.018824         1512   504     0
+2022-W30 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        149.251671   0.018702         1512   504     0
+2022-W31 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        116.942720   0.020391         1512   504     0
+2022-W32 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        145.384776   0.019360         1512   504     0
+2022-W33 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         87.285984   0.019794         1512   504     0
+2022-W34 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.833414   0.019243         1512   504     0
+2022-W35 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        164.707607   0.019468         1512   504     0
+2022-W36 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        128.350627   0.019716         1512   504     0
+2022-W37 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        147.776065   0.019538         1512   504     0
+2022-W38 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        130.333862   0.019082         1512   504     0
+2022-W39 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         94.564382   0.019382         1512   504     0
+2022-W40 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        106.638452   0.018786         1512   504     0
+2022-W41 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        139.856353   0.018578         1512   504     0
+2022-W42 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         65.731324   0.019495         1512   504     0
+2022-W43 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         74.270418   0.018822         1512   504     0
+2022-W44 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         78.608110   0.019456         1512   504     0
+2022-W45 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         85.856011   0.019606         1512   504     0
+2022-W46 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         74.112956   0.019464         1512   504     0
+2022-W47 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         76.198313   0.018563         1512   504     0
+2022-W48 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         71.678053   0.019399         1512   504     0
+2022-W49 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         92.897101   0.019271         1512   504     0
+2022-W50 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         85.192394   0.018694         1512   504     0
+2022-W51 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         43.418406   0.018729         1512   504     0
+2022-W52 medium_flex     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         37.141621   0.015608         1296   432     0
+
+PRICE_RESPONSE
+- price_variation_ok: True
+- price_min_eur_kWh: 0.0
+- price_max_eur_kWh: 0.651
+- price_mean_eur_kWh: 0.16787487557077624
+- objective_eur: 7336.862444935173
+- cost_eur: 7336.862444935173
+- energy_kwh_total: 45567.34404217794
+- energy_kwh_cooling: 13241.318083523303
+- energy_kwh_ventilation: 29115.221233152275
+- energy_kwh_pumping: 3210.8047255023525
+- n_snapshots: 8760
+- solver_status: optimal
+- energy_mode: preserve_total_energy[cooling, pumping, ventilation]
+- thermal_coefficients_count: 40
+- thermal_price_response_mae_C_mean: 2.439123518982157
+- thermal_price_response_violation_degC_sum: 269755.12218933186
+
+MENSAL
+ year  month month_label   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping  price_mean_eur_kWh  price_min_eur_kWh  price_max_eur_kWh  n_snapshots
+ 2022      1     2022-01 681.297609       3241.363997          577.954023             2437.681569          225.728405            0.201895            0.01400            0.29733          744
+ 2022      2     2022-02 612.548320       3088.614593          534.634193             2335.133806          218.846593            0.200720            0.07000            0.35000          672
+ 2022      3     2022-03 988.347249       3503.200411          615.705958             2664.912598          222.581856            0.282912            0.00000            0.65100          744
+ 2022      4     2022-04 539.445295       2984.465202          653.728871             2219.599534          111.136797            0.192010            0.00103            0.31932          720
+ 2022      5     2022-05 689.686453       3824.181245         1085.207986             2552.621023          186.352237            0.187151            0.00103            0.26588          744
+ 2022      6     2022-06 702.930034       4419.316569         1681.634307             2351.340256          386.342006            0.169825            0.05000            0.26260          720
+ 2022      7     2022-07 665.109441       4662.984709         1820.817055             2442.285971          399.881683            0.143805            0.07809            0.22110          744
+ 2022      8     2022-08 674.776255       4711.427770         1852.789115             2437.857232          420.781423            0.157266            0.02509            0.25307          744
+ 2022      9     2022-09 631.029842       4987.454028         1996.608243             2569.251595          421.594190            0.141250            0.00144            0.30000          720
+ 2022     10     2022-10 459.011603       3758.475464         1210.522455             2321.144932          226.808077            0.127203            0.00411            0.28000          744
+ 2022     11     2022-11 382.306775       3249.914715          621.515099             2452.592663          175.806954            0.115379            0.00411            0.21774          720
+ 2022     12     2022-12 310.373569       3135.945338          590.200779             2330.800054          214.944504            0.096552            0.00000            0.25668          744
+
+MENSAL_VS_BASELINE
+ year  month month_label  cost_eur_baseline  energy_kwh_total_baseline  energy_kwh_cooling_baseline  energy_kwh_ventilation_baseline  energy_kwh_pumping_baseline  price_mean_eur_kWh_baseline  price_min_eur_kWh_baseline  price_max_eur_kWh_baseline  n_snapshots_baseline  cost_eur_price_response  energy_kwh_total_price_response  energy_kwh_cooling_price_response  energy_kwh_ventilation_price_response  energy_kwh_pumping_price_response  price_mean_eur_kWh_price_response  price_min_eur_kWh_price_response  price_max_eur_kWh_price_response  n_snapshots_price_response  delta_cost_eur  delta_percent_cost_eur  delta_energy_kwh_total  delta_percent_energy_kwh_total  delta_energy_kwh_cooling  delta_percent_energy_kwh_cooling  delta_energy_kwh_ventilation  delta_percent_energy_kwh_ventilation  delta_energy_kwh_pumping  delta_percent_energy_kwh_pumping
+ 2022      1     2022-01         692.700111                3249.465567                   580.094596                      2442.461936                   226.909035                     0.201895                     0.01400                     0.29733                   744               681.297609                      3241.363997                         577.954023                            2437.681569                         225.728405                           0.201895                           0.01400                           0.29733                         744      -11.402502               -1.646095               -8.101570                       -0.249320                 -2.140574                         -0.369004                     -4.780367                             -0.195719                 -1.180629                         -0.520310
+ 2022      2     2022-02         618.101356                3070.126468                   528.538574                      2325.139180                   216.448713                     0.200720                     0.07000                     0.35000                   672               612.548320                      3088.614593                         534.634193                            2335.133806                         218.846593                           0.200720                           0.07000                           0.35000                         672       -5.553036               -0.898402               18.488125                        0.602194                  6.095619                          1.153297                      9.994626                              0.429851                  2.397880                          1.107828
+ 2022      3     2022-03        1013.039505                3518.496205                   620.153857                      2674.444491                   223.897857                     0.282912                     0.00000                     0.65100                   744               988.347249                      3503.200411                         615.705958                            2664.912598                         222.581856                           0.282912                           0.00000                           0.65100                         744      -24.692255               -2.437442              -15.295794                       -0.434725                 -4.447900                         -0.717225                     -9.531893                             -0.356406                 -1.316001                         -0.587768
+ 2022      4     2022-04         557.348636                2983.142157                   656.766307                      2215.337803                   111.038047                     0.192010                     0.00103                     0.31932                   720               539.445295                      2984.465202                         653.728871                            2219.599534                         111.136797                           0.192010                           0.00103                           0.31932                         720      -17.903341               -3.212234                1.323046                        0.044351                 -3.037436                         -0.462483                      4.261731                              0.192374                  0.098750                          0.088934
+ 2022      5     2022-05         700.244557                3826.750750                  1075.865367                      2562.791502                   188.093882                     0.187151                     0.00103                     0.26588                   744               689.686453                      3824.181245                        1085.207986                            2552.621023                         186.352237                           0.187151                           0.00103                           0.26588                         744      -10.558104               -1.507774               -2.569504                       -0.067146                  9.342619                          0.868382                    -10.170479                             -0.396852                 -1.741645                         -0.925945
+ 2022      6     2022-06         711.933673                4391.873469                  1676.297707                      2333.413704                   382.162058                     0.169825                     0.05000                     0.26260                   720               702.930034                      4419.316569                        1681.634307                            2351.340256                         386.342006                           0.169825                           0.05000                           0.26260                         720       -9.003638               -1.264674               27.443100                        0.624861                  5.336600                          0.318356                     17.926552                              0.768254                  4.179948                          1.093763
+ 2022      7     2022-07         678.119579                4684.272111                  1831.965984                      2449.986141                   402.319986                     0.143805                     0.07809                     0.22110                   744               665.109441                      4662.984709                        1820.817055                            2442.285971                         399.881683                           0.143805                           0.07809                           0.22110                         744      -13.010138               -1.918561              -21.287402                       -0.454444                -11.148929                         -0.608577                     -7.700170                             -0.314294                 -2.438303                         -0.606061
+ 2022      8     2022-08         689.844942                4720.073788                  1854.918695                      2443.677013                   421.478081                     0.157266                     0.02509                     0.25307                   744               674.776255                      4711.427770                        1852.789115                            2437.857232                         420.781423                           0.157266                           0.02509                           0.25307                         744      -15.068687               -2.184359               -8.646018                       -0.183175                 -2.129579                         -0.114807                     -5.819780                             -0.238157                 -0.696658                         -0.165289
+ 2022      9     2022-09         653.375338                4971.695693                  1987.484841                      2563.313319                   420.897532                     0.141250                     0.00144                     0.30000                   720               631.029842                      4987.454028                        1996.608243                            2569.251595                         421.594190                           0.141250                           0.00144                           0.30000                         720      -22.345497               -3.420009               15.758335                        0.316961                  9.123401                          0.459043                      5.938276                              0.231664                  0.696658                          0.165517
+ 2022     10     2022-10         478.522685                3782.161788                  1221.457696                      2332.840281                   227.863811                     0.127203                     0.00411                     0.28000                   744               459.011603                      3758.475464                        1210.522455                            2321.144932                         226.808077                           0.127203                           0.00411                           0.28000                         744      -19.511082               -4.077358              -23.686324                       -0.626264                -10.935241                         -0.895262                    -11.695349                             -0.501335                 -1.055734                         -0.463318
+ 2022     11     2022-11         390.325552                3233.373146                   614.659465                      2443.932126                   174.781555                     0.115379                     0.00411                     0.21774                   720               382.306775                      3249.914715                         621.515099                            2452.592663                         175.806954                           0.115379                           0.00411                           0.21774                         720       -8.018777               -2.054382               16.541569                        0.511589                  6.855633                          1.115355                      8.660537                              0.354369                  1.025398                          0.586674
+ 2022     12     2022-12         321.620115                3135.912900                   593.114994                      2327.883738                   214.914169                     0.096552                     0.00000                     0.25668                   744               310.373569                      3135.945338                         590.200779                            2330.800054                         214.944504                           0.096552                           0.00000                           0.25668                         744      -11.246546               -3.496841                0.032437                        0.001034                 -2.914215                         -0.491341                      2.916316                              0.125278                  0.030336                          0.014115
+
+SEMANAL
+ iso_year  iso_week   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping solver_status
+     2021        52   4.965593         40.265061           38.631310                1.633751            0.000000       optimal
+     2022         1 144.918922        768.146526          133.071204              581.325258           53.750064       optimal
+     2022         2 165.951418        763.588357          128.350540              581.125639           54.112178       optimal
+     2022         3 157.295212        765.702395          130.378841              581.211376           54.112178       optimal
+     2022         4 177.035577        766.469168          131.114861              581.242128           54.112178       optimal
+     2022         5 159.110113        763.964344          128.726508              581.125657           54.112178       optimal
+     2022         6 155.694322        767.837798          132.426588              581.299032           54.112178       optimal
+     2022         7 134.472273        766.649510          131.274925              581.262407           54.112178       optimal
+     2022         8 154.337664        771.075863          135.536867              581.426818           54.112178       optimal
+     2022         9 222.444358        773.178169          138.344983              581.554554           53.278632       optimal
+     2022        10 308.543284        771.668462          137.356520              581.499276           52.812666       optimal
+     2022        11 184.397452        770.872385          139.871586              581.611138           49.389661       optimal
+     2022        12 177.740297        769.088695          142.478135              581.730897           44.879662       optimal
+     2022        13 176.203138        769.954122          147.411239              581.904742           40.638142       optimal
+     2022        14 158.140896        764.374952          156.054722              582.272595           26.047635       optimal
+     2022        15 123.483454        641.609513          157.220405              467.167692           17.221415       optimal
+     2022        16  85.995760        765.582060          149.587434              582.027522           33.967105       optimal
+     2022        17 135.386530        643.261992          148.881126              466.857444           27.523422       optimal
+     2022        18 138.979890        759.250643          163.451266              582.541893           13.257484       optimal
+     2022        19 140.817064        768.101525          156.194954              582.308848           29.597722       optimal
+     2022        20 148.425511        822.185511          199.174017              582.102189           40.909305       optimal
+     2022        21 154.921450        922.086042          273.610391              582.462469           66.013182       optimal
+     2022        22 217.272160       1132.157852          453.525264              582.842115           95.790473       optimal
+     2022        23 141.306332        798.953004          255.888996              467.431464           75.632545       optimal
+     2022        24 200.272320       1141.983014          597.212893              468.137743           76.632378       optimal
+     2022        25 145.675485       1095.952018          417.256630              582.904916           95.790473       optimal
+     2022        26 130.621751        990.525170          311.979204              582.755493           95.790473       optimal
+     2022        27 138.476923       1000.823443          322.185677              582.847293           95.790473       optimal
+     2022        28 181.695324       1201.067783          522.276519              583.000791           95.790473       optimal
+     2022        29 142.167421       1069.552372          390.926140              582.835759           95.790473       optimal
+     2022        30 172.616506       1178.198977          499.282646              583.125858           95.790473       optimal
+     2022        31 134.781507        988.104037          337.106898              555.206666           95.790473       optimal
+     2022        32 169.056510       1233.505691          582.102178              555.613040           95.790473       optimal
+     2022        33  99.452257        830.001640          307.730133              445.639129           76.632378       optimal
+     2022        34 153.691400        964.581155          313.650899              555.139783           95.790473       optimal
+     2022        35 188.971169       1153.205330          491.007585              566.407272           95.790473       optimal
+     2022        36 145.063058       1136.533462          458.008159              582.734830           95.790473       optimal
+     2022        37 167.585873       1190.308982          511.632236              582.886273           95.790473       optimal
+     2022        38 146.739714       1024.859451          346.711344              582.575339           95.572767       optimal
+     2022        39 105.665183       1219.532747          541.337262              582.767855           95.427630       optimal
+     2022        40 119.501402        866.343349          326.309510              467.339514           72.694326       optimal
+     2022        41 158.731372       1186.599537          508.824671              582.661699           95.113166       optimal
+     2022        42  71.958277        770.487525          162.142050              582.519208           25.826267       optimal
+     2022        43  82.889416        765.697933          155.110621              582.260406           28.326905       optimal
+     2022        44  87.725434        641.178842          148.677111              466.862670           25.639061       optimal
+     2022        45  95.731530        768.151198          146.091345              581.870824           40.189029       optimal
+     2022        46  82.256396        766.361626          142.676283              581.740401           41.944942       optimal
+     2022        47  84.001659        765.625362          140.564105              581.633891           43.427366       optimal
+     2022        48  79.634399        642.051251          135.587256              466.293902           40.170094       optimal
+     2022        49 104.038527        640.734177          131.339663              466.104771           43.289743       optimal
+     2022        50  94.914577        768.231855          132.796718              581.322959           54.112178       optimal
+     2022        51  46.719683        771.218586          136.699134              581.482685           53.036767       optimal
+     2022        52  38.388701        749.903580          115.530530              580.583358           53.789692       optimal
+
+COMPARAÇÃO
+                    metric      baseline  price_response  delta_price_response_minus_baseline  delta_percent
+                  cost_eur   7505.176048     7336.862445                        -1.683136e+02  -2.242634e+00
+          energy_kwh_total  45567.344042    45567.344042                         0.000000e+00   0.000000e+00
+        energy_kwh_cooling  13241.318084    13241.318084                         0.000000e+00   0.000000e+00
+    energy_kwh_ventilation  29115.221233    29115.221233                        -3.637979e-12  -1.249511e-14
+        energy_kwh_pumping   3210.804726     3210.804726                         4.547474e-13   1.416303e-14
+thermal_violation_degC_sum 269755.646007   269755.122189                        -5.238172e-01            NaN
+   thermal_pred_mae_C_mean      2.439199        2.439124                        -7.560945e-05            NaN
+
+INTERPRETAÇÃO
+Período analisado: ano 2022.
+Cenário analisado: price_response.
+Modo energético do cenário: preserve_total_energy[cooling, pumping, ventilation].
+A variação horária dos preços foi verificada explicitamente (mín=0.00000 EUR/kWh; máx=0.65100 EUR/kWh; média=0.16787 EUR/kWh).
+Baseline: custo HVAC = 7505.18 EUR; energia HVAC = 45567.34 kWh.
+price_response: custo HVAC = 7336.86 EUR; energia HVAC = 45567.34 kWh.
+Variação de custo price_response vs baseline = -168.31 EUR (-2.24%).
+Variação de energia price_response vs baseline = 0.00 kWh (0.00%).
+Análise térmica extra: violação prevista baseline = 269755.6460 °C·h; price_response = 269755.1222 °C·h; MAE térmico médio baseline = 2.4392 °C; price_response = 2.4391 °C.
+Solver: optimal.
+Coeficientes térmicos anuais estimados para 40 zona(s): ā=0.9749, b̄=0.0097, ḡ=0.1466, c̄=0.4080, R² médio=0.9500.
+Métodos de estimação utilizados: {'robust_bounded_least_squares_with_positive_g_floor': 37, 'robust_bounded_least_squares': 3}.
+Resumo mensal guardado nos outputs: mês de menor custo neste cenário = 2022-12 (310.37 EUR; 3135.95 kWh).
+Leitura recomendada: neste cenário, a interpretação principal deve ser feita sobre o custo, porque a energia total das categorias flexíveis é preservada por bloco semanal e, por agregação, também no valor anual; o ganho decorre sobretudo da redistribuição horária do consumo face ao sinal de preço.
+
+TENTATIVAS DO SOLVER
+   block       scenario  success  status                                                         message  objective_solver  runtime_s  n_variables  n_eq  n_ub
+2021-W52 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)          4.973763   0.005128          432   147     0
+2022-W01 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        145.018829   0.020692         1512   507     0
+2022-W02 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        166.049595   0.020951         1512   507     0
+2022-W03 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        157.393158   0.021109         1512   507     0
+2022-W04 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        177.132510   0.021256         1512   507     0
+2022-W05 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        159.209894   0.022053         1512   507     0
+2022-W06 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        155.791157   0.021771         1512   507     0
+2022-W07 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.571750   0.020888         1512   507     0
+2022-W08 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        154.437887   0.021124         1512   507     0
+2022-W09 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        222.543903   0.020727         1512   507     0
+2022-W10 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        308.645192   0.021526         1512   507     0
+2022-W11 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        184.499277   0.020987         1512   507     0
+2022-W12 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        177.838946   0.020749         1512   507     0
+2022-W13 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        176.303898   0.021086         1512   507     0
+2022-W14 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        158.241710   0.020824         1512   507     0
+2022-W15 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        123.569436   0.023852         1512   507     0
+2022-W16 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         86.096640   0.021899         1512   507     0
+2022-W17 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        135.472089   0.022511         1512   507     0
+2022-W18 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        139.076196   0.021868         1512   507     0
+2022-W19 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        140.917501   0.021447         1512   507     0
+2022-W20 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        148.533515   0.021256         1512   507     0
+2022-W21 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        155.052048   0.021656         1512   507     0
+2022-W22 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        217.458543   0.022947         1512   507     0
+2022-W23 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        141.427613   0.021847         1512   507     0
+2022-W24 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        200.480268   0.021353         1512   507     0
+2022-W25 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        145.852904   0.020814         1512   507     0
+2022-W26 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        130.765922   0.021721         1512   507     0
+2022-W27 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        138.625879   0.020803         1512   507     0
+2022-W28 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        181.887638   0.021051         1512   507     0
+2022-W29 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        142.332372   0.021509         1512   507     0
+2022-W30 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        172.810179   0.022084         1512   507     0
+2022-W31 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.936093   0.021535         1512   507     0
+2022-W32 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        169.266980   0.020687         1512   507     0
+2022-W33 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         99.585298   0.021455         1512   507     0
+2022-W34 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        153.837460   0.021616         1512   507     0
+2022-W35 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        189.160069   0.021470         1512   507     0
+2022-W36 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        145.242799   0.021430         1512   507     0
+2022-W37 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        167.787022   0.021001         1512   507     0
+2022-W38 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        146.898236   0.020792         1512   507     0
+2022-W39 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        105.864350   0.021835         1512   507     0
+2022-W40 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        119.638952   0.021883         1512   507     0
+2022-W41 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        158.928620   0.021026         1512   507     0
+2022-W42 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         72.059873   0.020634         1512   507     0
+2022-W43 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         82.988188   0.021323         1512   507     0
+2022-W44 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         87.813142   0.020117         1512   507     0
+2022-W45 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         95.829971   0.020906         1512   507     0
+2022-W46 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         82.353433   0.020424         1512   507     0
+2022-W47 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         84.100285   0.021487         1512   507     0
+2022-W48 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         79.720710   0.021112         1512   507     0
+2022-W49 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        104.120510   0.021590         1512   507     0
+2022-W50 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         95.009785   0.020494         1512   507     0
+2022-W51 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         46.820843   0.021172         1512   507     0
+2022-W52 price_response     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         38.485069   0.017424         1296   435     0
+
+THERMAL_INERTIA
+- price_variation_ok: True
+- price_min_eur_kWh: 0.0
+- price_max_eur_kWh: 0.651
+- price_mean_eur_kWh: 0.16787487557077624
+- objective_eur: 6733.989965820257
+- cost_eur: 6733.989965820257
+- energy_kwh_total: 41692.65819261678
+- energy_kwh_cooling: 13241.318083523303
+- energy_kwh_ventilation: 26203.77680124183
+- energy_kwh_pumping: 2247.5633078516466
+- n_snapshots: 8760
+- solver_status: optimal
+- energy_mode: preserve_total_energy[cooling]
+- thermal_coefficients_count: 40
+- thermal_thermal_inertia_mae_C_mean: 2.439099946262633
+- thermal_thermal_inertia_violation_degC_sum: 236900.91716169732
+
+MENSAL
+ year  month month_label   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping  price_mean_eur_kWh  price_min_eur_kWh  price_max_eur_kWh  n_snapshots
+ 2022      1     2022-01 619.165911       2933.769146          576.717079             2198.215743          158.836324            0.201895            0.01400            0.29733          744
+ 2022      2     2022-02 555.091397       2782.143185          538.003824             2092.625262          151.514099            0.200720            0.07000            0.35000          672
+ 2022      3     2022-03 902.953471       3177.992422          614.260368             2407.003554          156.728500            0.282912            0.00000            0.65100          744
+ 2022      4     2022-04 498.260040       2722.014652          650.483997             1993.804023           77.726633            0.192010            0.00103            0.31932          720
+ 2022      5     2022-05 638.401708       3528.860078         1090.682010             2306.512351          131.665717            0.187151            0.00103            0.26588          744
+ 2022      6     2022-06 644.634126       4053.093718         1685.507944             2100.072333          267.513441            0.169825            0.05000            0.26260          720
+ 2022      7     2022-07 613.589347       4300.638689         1814.027173             2204.987527          281.623990            0.143805            0.07809            0.22110          744
+ 2022      8     2022-08 623.193465       4350.485268         1856.141300             2199.309312          295.034656            0.157266            0.02509            0.25307          744
+ 2022      9     2022-09 580.542064       4599.461514         1997.851255             2306.981987          294.628273            0.141250            0.00144            0.30000          720
+ 2022     10     2022-10 424.777014       3462.808046         1203.747125             2099.556253          159.504668            0.127203            0.00411            0.28000          744
+ 2022     11     2022-11 349.746287       2947.387833          625.501831             2199.538913          122.347089            0.115379            0.00411            0.21774          720
+ 2022     12     2022-12 283.635135       2834.003641          588.394180             2095.169543          150.439918            0.096552            0.00000            0.25668          744
+
+MENSAL_VS_BASELINE
+ year  month month_label  cost_eur_baseline  energy_kwh_total_baseline  energy_kwh_cooling_baseline  energy_kwh_ventilation_baseline  energy_kwh_pumping_baseline  price_mean_eur_kWh_baseline  price_min_eur_kWh_baseline  price_max_eur_kWh_baseline  n_snapshots_baseline  cost_eur_thermal_inertia  energy_kwh_total_thermal_inertia  energy_kwh_cooling_thermal_inertia  energy_kwh_ventilation_thermal_inertia  energy_kwh_pumping_thermal_inertia  price_mean_eur_kWh_thermal_inertia  price_min_eur_kWh_thermal_inertia  price_max_eur_kWh_thermal_inertia  n_snapshots_thermal_inertia  delta_cost_eur  delta_percent_cost_eur  delta_energy_kwh_total  delta_percent_energy_kwh_total  delta_energy_kwh_cooling  delta_percent_energy_kwh_cooling  delta_energy_kwh_ventilation  delta_percent_energy_kwh_ventilation  delta_energy_kwh_pumping  delta_percent_energy_kwh_pumping
+ 2022      1     2022-01         692.700111                3249.465567                   580.094596                      2442.461936                   226.909035                     0.201895                     0.01400                     0.29733                   744                619.165911                       2933.769146                          576.717079                             2198.215743                          158.836324                            0.201895                            0.01400                            0.29733                          744      -73.534200              -10.615589             -315.696421                       -9.715334                 -3.377517                         -0.582236                   -244.246194                            -10.000000                -68.072710                             -30.0
+ 2022      2     2022-02         618.101356                3070.126468                   528.538574                      2325.139180                   216.448713                     0.200720                     0.07000                     0.35000                   672                555.091397                       2782.143185                          538.003824                             2092.625262                          151.514099                            0.200720                            0.07000                            0.35000                          672      -63.009959              -10.194114             -287.983282                       -9.380177                  9.465250                          1.790834                   -232.513918                            -10.000000                -64.934614                             -30.0
+ 2022      3     2022-03        1013.039505                3518.496205                   620.153857                      2674.444491                   223.897857                     0.282912                     0.00000                     0.65100                   744                902.953471                       3177.992422                          614.260368                             2407.003554                          156.728500                            0.282912                            0.00000                            0.65100                          744     -110.086033              -10.866904             -340.503784                       -9.677537                 -5.893490                         -0.950327                   -267.440937                             -9.999869                -67.169357                             -30.0
+ 2022      4     2022-04         557.348636                2983.142157                   656.766307                      2215.337803                   111.038047                     0.192010                     0.00103                     0.31932                   720                498.260040                       2722.014652                          650.483997                             1993.804023                           77.726633                            0.192010                            0.00103                            0.31932                          720      -59.088596              -10.601730             -261.127505                       -8.753438                 -6.282310                         -0.956552                   -221.533780                            -10.000000                -33.311414                             -30.0
+ 2022      5     2022-05         700.244557                3826.750750                  1075.865367                      2562.791502                   188.093882                     0.187151                     0.00103                     0.26588                   744                638.401708                       3528.860078                         1090.682010                             2306.512351                          131.665717                            0.187151                            0.00103                            0.26588                          744      -61.842849               -8.831607             -297.890672                       -7.784428                 14.816643                          1.377184                   -256.279150                            -10.000000                -56.428164                             -30.0
+ 2022      6     2022-06         711.933673                4391.873469                  1676.297707                      2333.413704                   382.162058                     0.169825                     0.05000                     0.26260                   720                644.634126                       4053.093718                         1685.507944                             2100.072333                          267.513441                            0.169825                            0.05000                            0.26260                          720      -67.299546               -9.453064             -338.779751                       -7.713787                  9.210237                          0.549439                   -233.341370                            -10.000000               -114.648617                             -30.0
+ 2022      7     2022-07         678.119579                4684.272111                  1831.965984                      2449.986141                   402.319986                     0.143805                     0.07809                     0.22110                   744                613.589347                       4300.638689                         1814.027173                             2204.987527                          281.623990                            0.143805                            0.07809                            0.22110                          744      -64.530231               -9.516055             -383.633422                       -8.189819                -17.938812                         -0.979211                   -244.998614                            -10.000000               -120.695996                             -30.0
+ 2022      8     2022-08         689.844942                4720.073788                  1854.918695                      2443.677013                   421.478081                     0.157266                     0.02509                     0.25307                   744                623.193465                       4350.485268                         1856.141300                             2199.309312                          295.034656                            0.157266                            0.02509                            0.25307                          744      -66.651477               -9.661806             -369.588520                       -7.830143                  1.222606                          0.065912                   -244.367701                            -10.000000               -126.443424                             -30.0
+ 2022      9     2022-09         653.375338                4971.695693                  1987.484841                      2563.313319                   420.897532                     0.141250                     0.00144                     0.30000                   720                580.542064                       4599.461514                         1997.851255                             2306.981987                          294.628273                            0.141250                            0.00144                            0.30000                          720      -72.833274              -11.147233             -372.234178                       -7.487067                 10.366413                          0.521585                   -256.331332                            -10.000000               -126.269260                             -30.0
+ 2022     10     2022-10         478.522685                3782.161788                  1221.457696                      2332.840281                   227.863811                     0.127203                     0.00411                     0.28000                   744                424.777014                       3462.808046                         1203.747125                             2099.556253                          159.504668                            0.127203                            0.00411                            0.28000                          744      -53.745671              -11.231583             -319.353742                       -8.443683                -17.710571                         -1.449954                   -233.284028                            -10.000000                -68.359143                             -30.0
+ 2022     11     2022-11         390.325552                3233.373146                   614.659465                      2443.932126                   174.781555                     0.115379                     0.00411                     0.21774                   720                349.746287                       2947.387833                          625.501831                             2199.538913                          122.347089                            0.115379                            0.00411                            0.21774                          720      -40.579265              -10.396261             -285.985313                       -8.844798                 10.842366                          1.763963                   -244.393213                            -10.000000                -52.434467                             -30.0
+ 2022     12     2022-12         321.620115                3135.912900                   593.114994                      2327.883738                   214.914169                     0.096552                     0.00000                     0.25668                   744                283.635135                       2834.003641                          588.394180                             2095.169543                          150.439918                            0.096552                            0.00000                            0.25668                          744      -37.984980              -11.810511             -301.909259                       -9.627476                 -4.720814                         -0.795936                   -232.714195                             -9.996813                -64.474251                             -30.0
+
+SEMANAL
+ iso_year  iso_week   cost_eur  energy_kwh_total  energy_kwh_cooling  energy_kwh_ventilation  energy_kwh_pumping solver_status
+     2021        52   4.797545         40.101686           38.631310                1.470376            0.000000       optimal
+     2022         1 131.662836        693.888981          133.071204              523.192732           37.625045       optimal
+     2022         2 150.566662        689.242140          128.350540              523.013075           37.878525       optimal
+     2022         3 143.027052        691.347604          130.378841              523.090238           37.878525       optimal
+     2022         4 160.080164        692.111302          131.114861              523.117916           37.878525       optimal
+     2022         5 144.392135        689.618125          128.726508              523.013092           37.878525       optimal
+     2022         6 141.246609        693.474241          132.426588              523.169129           37.878525       optimal
+     2022         7 122.212645        692.289616          131.274925              523.136167           37.878525       optimal
+     2022         8 140.736356        696.699528          135.536867              523.284136           37.878525       optimal
+     2022         9 203.657430        699.039124          138.344983              523.399098           37.295043       optimal
+     2022        10 281.274584        697.674735          137.356520              523.349348           36.968866       optimal
+     2022        11 167.645822        697.894373          139.871586              523.450024           34.572763       optimal
+     2022        12 161.736584        697.455218          142.478135              523.561320           31.415763       optimal
+     2022        13 161.145957        699.572206          147.411239              523.714268           28.446699       optimal
+     2022        14 147.244241        698.333402          156.054722              524.045335           18.233344       optimal
+     2022        15 114.339993        589.726319          157.220405              420.450923           12.054991       optimal
+     2022        16  80.561023        697.189177          149.587434              523.824769           23.776973       optimal
+     2022        17 124.058952        588.319221          148.881126              420.171700           19.266395       optimal
+     2022        18 128.206194        697.019208          163.451266              524.287704            9.280239       optimal
+     2022        19 129.022238        700.991323          156.194954              524.077963           20.718405       optimal
+     2022        20 136.277714        751.702501          199.174017              523.891970           28.636513       optimal
+     2022        21 141.990239        844.035841          273.610391              524.216222           46.209227       optimal
+     2022        22 200.665125       1045.136498          453.525264              524.557904           67.053331       optimal
+     2022        23 129.225731        729.520094          255.888996              420.688317           52.942782       optimal
+     2022        24 187.092242       1072.179527          597.212893              421.323969           53.642665       optimal
+     2022        25 134.175190       1008.924384          417.256630              524.614424           67.053331       optimal
+     2022        26 119.477004        903.512479          311.979204              524.479944           67.053331       optimal
+     2022        27 126.924199        913.801572          322.185677              524.562564           67.053331       optimal
+     2022        28 168.175618       1114.030562          522.276519              524.700712           67.053331       optimal
+     2022        29 130.953244        982.531654          390.926140              524.552183           67.053331       optimal
+     2022        30 159.524673       1091.149249          499.282646              524.813272           67.053331       optimal
+     2022        31 123.416891        903.846229          337.106898              499.685999           67.053331       optimal
+     2022        32 157.155577       1149.207245          582.102178              500.051736           67.053331       optimal
+     2022        33  91.295157        762.448013          307.730133              401.075216           53.642665       optimal
+     2022        34 140.533502        880.330035          313.650899              499.625805           67.053331       optimal
+     2022        35 174.824144       1067.827461          491.007585              509.766545           67.053331       optimal
+     2022        36 133.869223       1049.522837          458.008159              524.461347           67.053331       optimal
+     2022        37 154.648323       1103.283213          511.632236              524.597646           67.053331       optimal
+     2022        38 134.449474        937.930087          346.711344              524.317806           66.900937       optimal
+     2022        39  98.023246       1132.627672          541.337262              524.491069           66.799341       optimal
+     2022        40 110.131010        797.801100          326.309510              420.605563           50.886028       optimal
+     2022        41 146.979950       1099.799417          508.824671              524.395529           66.579217       optimal
+     2022        42  66.826681        704.487724          162.142050              524.267287           18.078387       optimal
+     2022        43  76.156694        698.973820          155.110621              524.034365           19.828834       optimal
+     2022        44  80.598991        586.800857          148.677111              420.176403           17.947342       optimal
+     2022        45  87.632830        697.907407          146.091345              523.683742           28.132320       optimal
+     2022        46  75.067187        695.604103          142.676283              523.566361           29.361459       optimal
+     2022        47  77.153368        694.433763          140.564105              523.470502           30.399156       optimal
+     2022        48  73.404948        583.370833          135.587256              419.664512           28.119066       optimal
+     2022        49  94.709110        581.136777          131.339663              419.494294           30.302820       optimal
+     2022        50  85.981748        693.865906          132.796718              523.190663           37.878525       optimal
+     2022        51  42.881575        697.159288          136.699134              523.334417           37.125737       optimal
+     2022        52  36.154338        675.782516          115.530530              522.599202           37.652784       optimal
+
+COMPARAÇÃO
+                    metric      baseline  thermal_inertia  delta_thermal_inertia_minus_baseline  delta_percent
+                  cost_eur   7505.176048      6733.989966                           -771.186082     -10.275390
+          energy_kwh_total  45567.344042     41692.658193                          -3874.685850      -8.503208
+        energy_kwh_cooling  13241.318084     13241.318084                              0.000000       0.000000
+    energy_kwh_ventilation  29115.221233     26203.776801                          -2911.444432      -9.999733
+        energy_kwh_pumping   3210.804726      2247.563308                           -963.241418     -30.000000
+thermal_violation_degC_sum 236901.558491    236900.917162                             -0.641330            NaN
+   thermal_pred_mae_C_mean      2.439199         2.439100                             -0.000099            NaN
+
+INTERPRETAÇÃO
+Período analisado: ano 2022.
+Cenário analisado: thermal_inertia.
+Modo energético do cenário: preserve_total_energy[cooling].
+A variação horária dos preços foi verificada explicitamente (mín=0.00000 EUR/kWh; máx=0.65100 EUR/kWh; média=0.16787 EUR/kWh).
+Baseline: custo HVAC = 7505.18 EUR; energia HVAC = 45567.34 kWh.
+thermal_inertia: custo HVAC = 6733.99 EUR; energia HVAC = 41692.66 kWh.
+Variação de custo thermal_inertia vs baseline = -771.19 EUR (-10.28%).
+Variação de energia thermal_inertia vs baseline = -3874.69 kWh (-8.50%).
+Análise térmica extra: violação prevista baseline = 236901.5585 °C·h; thermal_inertia = 236900.9172 °C·h; MAE térmico médio baseline = 2.4392 °C; thermal_inertia = 2.4391 °C.
+Solver: optimal.
+Coeficientes térmicos anuais estimados para 40 zona(s): ā=0.9749, b̄=0.0097, ḡ=0.1466, c̄=0.4080, R² médio=0.9500.
+Métodos de estimação utilizados: {'robust_bounded_least_squares_with_positive_g_floor': 37, 'robust_bounded_least_squares': 3}.
+Resumo mensal guardado nos outputs: mês de menor custo neste cenário = 2022-12 (283.64 EUR; 2834.00 kWh).
+Leitura recomendada: neste cenário, a energia total de cooling é preservada em cada bloco semanal, permitindo ler a inércia térmica como redistribuição temporal do esforço de arrefecimento, complementada por modulação admissível das cargas auxiliares.
+
+TENTATIVAS DO SOLVER
+   block        scenario  success  status                                                         message  objective_solver  runtime_s  n_variables  n_eq  n_ub
+2021-W52 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)          4.808957   0.004635          432   145     0
+2022-W01 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        131.785922   0.019392         1512   505     0
+2022-W02 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        150.687902   0.019535         1512   505     0
+2022-W03 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        143.148889   0.019550         1512   505     0
+2022-W04 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        160.199946   0.019919         1512   505     0
+2022-W05 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        144.514115   0.020335         1512   505     0
+2022-W06 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        141.368908   0.019553         1512   505     0
+2022-W07 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        122.334779   0.019821         1512   505     0
+2022-W08 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        140.859779   0.020202         1512   505     0
+2022-W09 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        203.782246   0.019313         1512   505     0
+2022-W10 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        281.399643   0.020061         1512   505     0
+2022-W11 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        167.769900   0.020353         1512   505     0
+2022-W12 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        161.860781   0.020101         1512   505     0
+2022-W13 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        161.269158   0.019998         1512   505     0
+2022-W14 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        147.367837   0.020303         1512   505     0
+2022-W15 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        114.448477   0.019874         1512   505     0
+2022-W16 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         80.685018   0.020010         1512   505     0
+2022-W17 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        124.168171   0.020504         1512   505     0
+2022-W18 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        128.324248   0.019361         1512   505     0
+2022-W19 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        129.145463   0.019470         1512   505     0
+2022-W20 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        136.416834   0.019693         1512   505     0
+2022-W21 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        142.165164   0.020172         1512   505     0
+2022-W22 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        200.916898   0.020230         1512   505     0
+2022-W23 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        129.389014   0.018994         1512   505     0
+2022-W24 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        187.371935   0.020036         1512   505     0
+2022-W25 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.411500   0.019966         1512   505     0
+2022-W26 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        119.672342   0.019790         1512   505     0
+2022-W27 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        127.117339   0.020129         1512   505     0
+2022-W28 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        168.435730   0.019656         1512   505     0
+2022-W29 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        131.181158   0.019318         1512   505     0
+2022-W30 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        159.790963   0.019837         1512   505     0
+2022-W31 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        123.624842   0.019527         1512   505     0
+2022-W32 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        157.449733   0.019911         1512   505     0
+2022-W33 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         91.476192   0.019575         1512   505     0
+2022-W34 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        140.734011   0.020045         1512   505     0
+2022-W35 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        175.087829   0.019280         1512   505     0
+2022-W36 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.123161   0.019671         1512   505     0
+2022-W37 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        154.919020   0.020770         1512   505     0
+2022-W38 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        134.664965   0.019485         1512   505     0
+2022-W39 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         98.309054   0.020058         1512   505     0
+2022-W40 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        110.315006   0.020179         1512   505     0
+2022-W41 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)        147.254291   0.019147         1512   505     0
+2022-W42 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         66.951500   0.019183         1512   505     0
+2022-W43 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         76.279912   0.020276         1512   505     0
+2022-W44 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         80.707630   0.019980         1512   505     0
+2022-W45 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         87.755890   0.019749         1512   505     0
+2022-W46 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         75.190508   0.019538         1512   505     0
+2022-W47 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         77.275499   0.019187         1512   505     0
+2022-W48 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         73.512682   0.019904         1512   505     0
+2022-W49 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         94.814628   0.019983         1512   505     0
+2022-W50 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         86.102948   0.019236         1512   505     0
+2022-W51 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         43.004819   0.019485         1512   505     0
+2022-W52 thermal_inertia     True       0 Optimization terminated successfully. (HiGHS Status 7: Optimal)         36.270987   0.015719         1296   433     0

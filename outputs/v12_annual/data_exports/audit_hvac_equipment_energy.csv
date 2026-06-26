@@ -1,0 +1,61 @@
+equipment_column,category_plot,energy_kWh_period
+UTAN SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,11530.998251737556
+Z14_B2_08 PTHP:Zone Packaged Terminal Heat Pump Electric Power [W](Hourly),thermal_conditioning,8018.191122059833
+CH_B:Chiller Electric Power [W](Hourly),thermal_conditioning,5223.12696146347
+CH_B CHW BRANCH PUMP:Pump Electric Energy [W](Hourly),pumping,1939.9038250609456
+CALD_B HW BRANCH PUMP:Pump Electric Energy [W](Hourly),pumping,1270.9009004414067
+Z05_B1_03 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,1267.895898971427
+Z32_B5_04 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,988.8038324999999
+Z25_B4_04 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,988.8038324999999
+Z18_B3_04 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,988.8038324999976
+VEX_Z25_B4_04:Fan Electric Power [W](Hourly),ventilation,859.2191020408161
+VEX_Z32_B5_04:Fan Electric Power [W](Hourly),ventilation,859.2191020408161
+VEX_Z18_B3_04:Fan Electric Power [W](Hourly),ventilation,859.2191020408161
+Z01_B0_01 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,621.2484684999998
+Z17_B3_03 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,613.3695605714281
+Z24_B4_03 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,613.3695605714281
+Z31_B5_03 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,613.3695605714281
+Z10_B2_04 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,593.2822994999987
+VEX_Z05_B1_03:Fan Electric Power [W](Hourly),ventilation,545.4793469387754
+VEX_Z01_B0_01:Fan Electric Power [W](Hourly),ventilation,540.1315102040805
+VEX_Z10_B2_04:Fan Electric Power [W](Hourly),ventilation,515.1749387755098
+Z04_B1_02 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,361.5626134999993
+Z14_B2_08 PTHP SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,337.0194107514787
+VEX_Z04_B1_02:Fan Electric Power [W](Hourly),ventilation,313.73975510203945
+Z11_B2_05 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,260.6146553999998
+Z26_B4_05 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,241.38898409999976
+Z19_B3_05 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,241.38898409999976
+Z33_B5_05 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,241.38898409999976
+VEX_Z17_B3_03:Fan Electric Power [W](Hourly),ventilation,215.69608163265252
+VEX_Z21_B3_07:Fan Electric Power [W](Hourly),ventilation,215.69608163265252
+VEX_Z31_B5_03:Fan Electric Power [W](Hourly),ventilation,215.69608163265252
+VEX_Z24_B4_03:Fan Electric Power [W](Hourly),ventilation,215.69608163265252
+VEX_Z11_B2_05:Fan Electric Power [W](Hourly),ventilation,212.1308571428559
+Z09_B2_03 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,197.8611485714285
+VEX_Z26_B4_05:Fan Electric Power [W](Hourly),ventilation,196.0873469387754
+VEX_Z19_B3_05:Fan Electric Power [W](Hourly),ventilation,196.0873469387754
+VEX_Z33_B5_05:Fan Electric Power [W](Hourly),ventilation,196.0873469387754
+VEX_Z03_B1_01:Fan Electric Power [W](Hourly),ventilation,196.0873469387754
+VEX_Z13_B2_07:Fan Electric Power [W](Hourly),ventilation,176.47861224489682
+VEX_Z35_B5_07:Fan Electric Power [W](Hourly),ventilation,167.56555102040673
+VEX_Z28_B4_07:Fan Electric Power [W](Hourly),ventilation,167.56555102040673
+VEX_Z06_B1_04:Fan Electric Power [W](Hourly),ventilation,147.95681632653051
+Z30_B5_02 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,139.0005728571428
+Z16_B3_02 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,139.0005728571428
+Z08_B2_02 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,139.0005728571428
+Z23_B4_02 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,139.0005728571428
+Z12_B2_06 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,85.447428
+Z27_B4_06 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,72.6303138
+Z20_B3_06 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,72.6303138
+Z34_B5_06 SUPPLY FAN:Fan Electric Power [W](Hourly),ventilation,72.6303138
+VEX_Z09_B2_03:Fan Electric Power [W](Hourly),ventilation,69.52187755102034
+VEX_Z12_B2_06:Fan Electric Power [W](Hourly),ventilation,69.52187755102034
+VEX_Z27_B4_06:Fan Electric Power [W](Hourly),ventilation,58.82620408163262
+VEX_Z20_B3_06:Fan Electric Power [W](Hourly),ventilation,58.82620408163262
+VEX_Z34_B5_06:Fan Electric Power [W](Hourly),ventilation,58.82620408163262
+VEX_Z02_B0_02:Fan Electric Power [W](Hourly),ventilation,49.9131428571428
+VEX_Z08_B2_02:Fan Electric Power [W](Hourly),ventilation,44.56530612244886
+VEX_Z23_B4_02:Fan Electric Power [W](Hourly),ventilation,44.56530612244886
+VEX_Z16_B3_02:Fan Electric Power [W](Hourly),ventilation,44.56530612244886
+VEX_Z30_B5_02:Fan Electric Power [W](Hourly),ventilation,44.56530612244886
+Z14_B2_08A) PTHP:Zone Packaged Terminal Heat Pump Electric Power [W](Hourly),thermal_conditioning,0.0

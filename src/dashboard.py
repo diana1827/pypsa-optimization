@@ -4,10 +4,8 @@ import numpy as np
 import plotly.express as px
 
 
-# =========================================================
-# OPTIONAL PROJECT IMPORTS
-# =========================================================
-
+# Tenta primeiro os imports a partir da estrutura do projeto.
+# Se a app estiver a correr fora desse contexto, tenta os módulos locais.
 try:
     from src.data_io import load_baseline_data
     from src.baseline import UnitConfig, compute_baseline
@@ -21,10 +19,6 @@ except Exception:
         UnitConfig = None
 
 
-# =========================================================
-# PAGE CONFIG
-# =========================================================
-
 st.set_page_config(
     page_title="Building Energy Dashboard",
     page_icon="⚡",
@@ -33,14 +27,10 @@ st.set_page_config(
 
 st.title("⚡ Building Energy Dashboard")
 st.caption(
-    "Annual analysis, daily profile, category breakdown, and exact billing-period comparison "
-    "between invoice consumption and modeled consumption."
+    "Annual analysis, daily profile, category breakdown, billing variance table, "
+    "and PV production analysis."
 )
 
-
-# =========================================================
-# COLORS
-# =========================================================
 
 COLORS = {
     "blue": "#1D4ED8",
@@ -50,17 +40,16 @@ COLORS = {
     "purple": "#7C3AED",
     "teal": "#0F766E",
     "gray": "#475569",
+    "yellow": "#EAB308",
 }
 
 
-# =========================================================
-# INVOICE DATA (EXACT VALUES FROM THE USER)
-# =========================================================
-
 def get_invoice_data() -> pd.DataFrame:
     """
-    Exact invoice data. Only invoice-side values are stored here.
-    Modeled consumption is computed later from the exact billing period.
+    Devolve os dados de faturação introduzidos manualmente.
+
+    O consumo modelado não fica guardado aqui; é calculado depois
+    com base no intervalo exato de faturação.
     """
     data = [
         {
@@ -202,13 +191,12 @@ def get_invoice_data() -> pd.DataFrame:
     return df.sort_values("Reference Month").reset_index(drop=True)
 
 
-# =========================================================
-# HELPERS
-# =========================================================
-
 def aggregate_categories(load_df: pd.DataFrame, mode: str) -> pd.DataFrame:
     """
-    Simplified category aggregation.
+    Agrupa colunas com nomes semelhantes na mesma categoria.
+
+    Se estiver ativo o modo 'Grouped HVAC', tudo o que pertence
+    a AVAC fica consolidado numa única categoria.
     """
     category_aliases = {
         "equip": "Equipment",
@@ -239,13 +227,30 @@ def aggregate_categories(load_df: pd.DataFrame, mode: str) -> pd.DataFrame:
     return load_df.T.groupby(mapping).sum().T
 
 
-def load_baseline_safe(config_path: str, price_column: str):
+def infer_timestep_hours(index: pd.DatetimeIndex) -> float:
     """
-    Load baseline with fixed internal units for billing comparison:
-    power in kW and price in EUR/kWh.
+    Obtém o passo temporal mais frequente do índice.
+    """
+    if len(index) < 2:
+        return 1.0
+
+    deltas = index.to_series().diff().dropna()
+    if deltas.empty:
+        return 1.0
+
+    dt = deltas.mode().iloc[0]
+    return dt.total_seconds() / 3600.0
+
+
+def load_project_data_safe(config_path: str, price_column: str):
+    """
+    Carrega os dados do projeto e calcula o baseline.
+
+    Em caso de erro, devolve a mensagem para a interface tratar
+    sem interromper a execução da app.
     """
     if load_baseline_data is None or compute_baseline is None or UnitConfig is None:
-        return None, "Project modules could not be imported."
+        return None, None, "Project modules could not be imported."
 
     try:
         data = load_baseline_data(config_path)
@@ -257,9 +262,9 @@ def load_baseline_safe(config_path: str, price_column: str):
                 price_unit="EUR/kWh",
             ),
         )
-        return baseline, None
+        return data, baseline, None
     except Exception as exc:
-        return None, str(exc)
+        return None, None, str(exc)
 
 
 def compute_modeled_billing_consumption(
@@ -267,8 +272,11 @@ def compute_modeled_billing_consumption(
     invoices_df: pd.DataFrame,
 ) -> pd.DataFrame:
     """
-    Compute modeled consumption in kWh for the exact invoice billing period.
-    End date is treated as inclusive.
+    Calcula o consumo modelado para cada período de faturação.
+
+    A data final da fatura é considerada inclusive.
+    A variância é calculada como:
+        consumo modelado - consumo faturado
     """
     rows = []
 
@@ -280,24 +288,52 @@ def compute_modeled_billing_consumption(
         modeled_kwh = float(total_energy_ts_kwh.loc[mask].sum())
 
         invoice_kwh = float(row["Invoice Consumption (kWh)"])
-        difference_kwh = invoice_kwh - modeled_kwh
-        absolute_difference_kwh = abs(difference_kwh)
-        coverage_pct = 100.0 * modeled_kwh / invoice_kwh if invoice_kwh != 0 else np.nan
+        billing_variance_kwh = modeled_kwh - invoice_kwh
+        billing_variance_pct = (
+            100.0 * billing_variance_kwh / invoice_kwh if invoice_kwh != 0 else np.nan
+        )
 
         rows.append(
             {
                 **row.to_dict(),
                 "Modeled Consumption Billing Period (kWh)": modeled_kwh,
-                "Difference (kWh)": difference_kwh,
-                "Absolute Difference (kWh)": absolute_difference_kwh,
-                "Coverage (%)": coverage_pct,
+                "Billing Variance (kWh)": billing_variance_kwh,
+                "Billing Variance (%)": billing_variance_pct,
             }
         )
 
     return pd.DataFrame(rows).sort_values("Reference Month").reset_index(drop=True)
 
 
+def compute_pv_hourly_production_kwh(pv_power_w_df: pd.DataFrame):
+    """
+    Converte potência fotovoltaica em energia horária.
+
+    Parte do princípio de que os valores de entrada estão em W e que
+    cada amostra representa potência instantânea ou por patamar.
+    """
+    if pv_power_w_df is None or pv_power_w_df.empty:
+        return (
+            pd.Series(dtype=float),
+            pd.Series(dtype=float),
+            1.0,
+        )
+
+    pv_power_w_df = pv_power_w_df.copy().sort_index()
+    total_pv_power_w = pv_power_w_df.sum(axis=1).rename("PV Power (W)")
+
+    dt_hours = infer_timestep_hours(total_pv_power_w.index)
+
+    pv_energy_step_kwh = (total_pv_power_w * dt_hours / 1000.0).rename("PV Energy Step (kWh)")
+    pv_hourly_kwh = pv_energy_step_kwh.resample("h").sum().rename("PV Production (kWh)")
+
+    return pv_hourly_kwh, total_pv_power_w, dt_hours
+
+
 def format_date_columns(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
+    """
+    Formata colunas de data no formato dd/mm/aaaa.
+    """
     out = df.copy()
     for col in cols:
         if col in out.columns:
@@ -305,16 +341,70 @@ def format_date_columns(df: pd.DataFrame, cols: list[str]) -> pd.DataFrame:
     return out
 
 
-def get_lowest_error_row(comparison_df: pd.DataFrame):
-    if comparison_df.empty:
-        return None
-    idx = comparison_df["Absolute Difference (kWh)"].idxmin()
-    return comparison_df.loc[idx]
+def style_figure(fig, x_title="", y_title="", horizontal_grid=True):
+    """
+    Aplica o estilo base aos gráficos para garantir consistência visual.
+    """
+    fig.update_layout(
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        font=dict(
+            family="Arial, sans-serif",
+            size=14,
+            color="black",
+        ),
+        title_font=dict(
+            family="Arial, sans-serif",
+            size=18,
+            color="black",
+            weight="bold",
+        ),
+        margin=dict(l=100, r=60, t=60, b=100),
+        showlegend=False,
+        autosize=True,
+        height=500,
+    )
 
+    fig.update_xaxes(
+        title_text=x_title,
+        title_font=dict(size=14, weight="bold", color="black"),
+        title_standoff=15,
+        showline=True,
+        linewidth=1.5,
+        linecolor="#BFBFBF",
+        mirror=False,
+        ticks="outside",
+        tickcolor="#BFBFBF",
+        ticklen=6,
+        tickwidth=1.5,
+        tickfont=dict(size=12, color="black"),
+        showgrid=False,
+        zeroline=False,
+    )
 
-# =========================================================
-# SIDEBAR
-# =========================================================
+    fig.update_yaxes(
+        title_text=y_title,
+        title_font=dict(size=14, weight="bold", color="black"),
+        title_standoff=15,
+        showline=True,
+        linewidth=1.5,
+        linecolor="#BFBFBF",
+        mirror=False,
+        ticks="outside",
+        tickcolor="#BFBFBF",
+        ticklen=6,
+        tickwidth=1.5,
+        tickfont=dict(size=12, color="black"),
+        showgrid=horizontal_grid,
+        gridcolor="#E0E0E0",
+        gridwidth=0.5,
+        zeroline=False,
+    )
+
+    fig.update_traces(cliponaxis=False)
+
+    return fig
+
 
 st.sidebar.header("Settings")
 
@@ -327,24 +417,32 @@ category_mode = st.sidebar.radio(
 )
 
 
-# =========================================================
-# DATA LOADING
-# =========================================================
-
 invoice_df_all = get_invoice_data()
 
-baseline, baseline_error = load_baseline_safe(
+project_data, baseline, baseline_error = load_project_data_safe(
     config_path=config_path,
     price_column=price_column,
 )
 
 baseline_loaded = baseline is not None
+pv_loaded = False
+pv_error = None
+
+if project_data is not None and "pv_error" in project_data:
+    pv_error = project_data["pv_error"]
 
 monthly_energy_kwh = pd.Series(dtype=float)
 daily_energy_kwh = pd.Series(dtype=float)
 total_energy_ts_kwh = pd.Series(dtype=float)
 total_load_kw = pd.Series(dtype=float)
 category_df = pd.DataFrame()
+
+pv_hourly_kwh = pd.Series(dtype=float)
+pv_daily_kwh = pd.Series(dtype=float)
+pv_monthly_kwh = pd.Series(dtype=float)
+pv_total_power_w = pd.Series(dtype=float)
+pv_source_df = pd.DataFrame()
+
 selected_year = 2022
 available_years = sorted(invoice_df_all["Year"].unique().tolist())
 
@@ -357,6 +455,14 @@ if baseline_loaded:
         baseline_loaded = False
         baseline_error = "Baseline object does not provide a valid load_by_group time series."
 
+if project_data is not None and "pv_power_w" in project_data:
+    try:
+        pv_raw = project_data["pv_power_w"].copy().sort_index()
+        pv_years = sorted(pv_raw.index.year.unique().tolist())
+        available_years = sorted(set(available_years).union(set(pv_years)))
+    except Exception as exc:
+        pv_error = str(exc)
+
 selected_year = st.sidebar.selectbox(
     "Analysis year",
     options=available_years,
@@ -365,6 +471,7 @@ selected_year = st.sidebar.selectbox(
 
 invoice_df = invoice_df_all[invoice_df_all["Year"] == selected_year].copy()
 
+# Cálculo dos indicadores do baseline do edifício.
 if baseline_loaded:
     try:
         load_by_group_year = load_by_group_raw.loc[load_by_group_raw.index.year == selected_year].copy()
@@ -373,13 +480,8 @@ if baseline_loaded:
             baseline_loaded = False
             baseline_error = f"No baseline time series available for year {selected_year}."
         else:
-            # Aggregate categories
             load_by_group_year = aggregate_categories(load_by_group_year, category_mode)
 
-            # Internal units:
-            # - load in kW
-            # - timestep in hours
-            # - energy = kW * h = kWh
             dt_hours = float(baseline.timestep_hours)
             total_load_kw = load_by_group_year.sum(axis=1).rename("Total Load (kW)")
             total_energy_ts_kwh = (total_load_kw * dt_hours).rename("Total Energy (kWh)")
@@ -394,6 +496,44 @@ if baseline_loaded:
         baseline_loaded = False
         baseline_error = str(exc)
 
+# Cálculo dos indicadores da produção fotovoltaica.
+if project_data is not None and "pv_power_w" in project_data:
+    try:
+        pv_power_w_year = project_data["pv_power_w"].loc[
+            project_data["pv_power_w"].index.year == selected_year
+        ].copy()
+
+        if pv_power_w_year.empty:
+            pv_loaded = False
+            if pv_error is None:
+                pv_error = f"No PV time series available for year {selected_year}."
+        else:
+            pv_hourly_kwh, pv_total_power_w, pv_dt_hours = compute_pv_hourly_production_kwh(pv_power_w_year)
+            pv_daily_kwh = pv_hourly_kwh.resample("D").sum()
+            pv_monthly_kwh = pv_hourly_kwh.resample("ME").sum()
+
+            pv_source_energy_kwh = (
+                pv_power_w_year.mul(pv_dt_hours / 1000.0)
+                .sum()
+                .sort_values(ascending=False)
+            )
+
+            pv_source_df = pv_source_energy_kwh.rename_axis("PV Source").reset_index(name="Energy (kWh)")
+            if not pv_source_df.empty and pv_source_df["Energy (kWh)"].sum() > 0:
+                pv_source_df["Share (%)"] = 100 * pv_source_df["Energy (kWh)"] / pv_source_df["Energy (kWh)"].sum()
+            else:
+                pv_source_df["Share (%)"] = 0.0
+
+            pv_loaded = True
+
+    except Exception as exc:
+        pv_loaded = False
+        pv_error = str(exc)
+else:
+    pv_loaded = False
+    if pv_error is None:
+        pv_error = "Optional PV file 'PV_Data_2022.csv' was not found in the configured data folder."
+
 
 comparison_df = pd.DataFrame()
 
@@ -404,18 +544,10 @@ if baseline_loaded and not invoice_df.empty:
     )
 
 
-# =========================================================
-# TABS
-# =========================================================
-
-tab1, tab2, tab3, tab4 = st.tabs(
-    ["Overview", "Daily Profile", "Categories", "Billing Comparison"]
+tab1, tab2, tab3, tab4, tab5 = st.tabs(
+    ["Overview", "Daily Profile", "Categories", "Billing Comparison", "PV Production"]
 )
 
-
-# =========================================================
-# TAB 1 - OVERVIEW
-# =========================================================
 
 with tab1:
     st.subheader(f"Overview - {selected_year}")
@@ -424,123 +556,17 @@ with tab1:
         st.warning(f"No invoice data configured for year {selected_year}.")
     else:
         total_invoice_kwh = float(invoice_df["Invoice Consumption (kWh)"].sum())
+        st.metric("Total Invoice Consumption", f"{total_invoice_kwh:,.2f} kWh")
 
         if baseline_loaded and not comparison_df.empty:
-            total_modeled_billing_kwh = float(comparison_df["Modeled Consumption Billing Period (kWh)"].sum())
-            total_difference_kwh = float(comparison_df["Difference (kWh)"].sum())
-            avg_coverage_pct = float(comparison_df["Coverage (%)"].mean())
-
-            lowest_error_row = get_lowest_error_row(comparison_df)
-            lowest_error_kwh = float(lowest_error_row["Absolute Difference (kWh)"])
-            lowest_error_month = lowest_error_row["Month"]
-
-            m1, m2, m3, m4, m5 = st.columns(5)
-            m1.metric("Total Invoice Consumption", f"{total_invoice_kwh:,.2f} kWh")
-            m2.metric("Total Modeled Consumption", f"{total_modeled_billing_kwh:,.2f} kWh")
-            m3.metric("Total Difference", f"{total_difference_kwh:,.2f} kWh")
-            m4.metric("Average Coverage", f"{avg_coverage_pct:.2f} %")
-            m5.metric("Lowest Absolute Error", f"{lowest_error_kwh:,.2f} kWh")
-
-            st.caption(f"Lowest absolute error observed in: {lowest_error_month}")
-
-            plot_df = comparison_df.melt(
-                id_vars=["Month"],
-                value_vars=[
-                    "Invoice Consumption (kWh)",
-                    "Modeled Consumption Billing Period (kWh)",
-                ],
-                var_name="Series",
-                value_name="Energy (kWh)",
-            )
-
-            label_map = {
-                "Invoice Consumption (kWh)": "Invoice Consumption",
-                "Modeled Consumption Billing Period (kWh)": "Modeled Consumption (Exact Billing Period)",
-            }
-            plot_df["Series"] = plot_df["Series"].map(label_map)
-
-            fig = px.bar(
-                plot_df,
-                x="Month",
-                y="Energy (kWh)",
-                color="Series",
-                barmode="group",
-                text_auto=".2f",
-                color_discrete_map={
-                    "Invoice Consumption": COLORS["blue"],
-                    "Modeled Consumption (Exact Billing Period)": COLORS["orange"],
-                },
-            )
-            fig.update_layout(
-                xaxis_title="Month",
-                yaxis_title="Energy (kWh)",
-                legend_title="Series",
-            )
-            fig.update_traces(
-                hovertemplate="<b>%{x}</b><br>%{fullData.name}: %{y:,.2f} kWh<extra></extra>"
-            )
-            st.plotly_chart(
-                fig,
-                use_container_width=True,
-                key=f"overview_compare_{selected_year}",
-            )
-
-            fig_cov = px.line(
-                comparison_df,
-                x="Month",
-                y="Coverage (%)",
-                markers=True,
-            )
-            fig_cov.update_traces(
-                line=dict(color=COLORS["purple"], width=3),
-                marker=dict(size=9, color=COLORS["purple"]),
-                hovertemplate="<b>%{x}</b><br>Coverage: %{y:.2f}%<extra></extra>",
-            )
-            fig_cov.update_layout(
-                xaxis_title="Month",
-                yaxis_title="Coverage (%)",
-                showlegend=False,
-            )
-            st.plotly_chart(
-                fig_cov,
-                use_container_width=True,
-                key=f"overview_coverage_{selected_year}",
-            )
-
-            display_cols = [
-                "Month",
-                "Invoice Consumption (kWh)",
-                "Modeled Consumption Billing Period (kWh)",
-                "Difference (kWh)",
-                "Coverage (%)",
-            ]
-
-            st.markdown("### Exact comparison table")
-            st.dataframe(
-                comparison_df[display_cols].style.format(
-                    {
-                        "Invoice Consumption (kWh)": "{:,.2f}",
-                        "Modeled Consumption Billing Period (kWh)": "{:,.2f}",
-                        "Difference (kWh)": "{:,.2f}",
-                        "Coverage (%)": "{:.2f}",
-                    }
-                ),
-                use_container_width=True,
-                hide_index=True,
-            )
-
             st.info(
-                "Comparison is based on the exact invoice billing dates. "
-                "Invoice consumption is read exactly from the invoice data. "
-                "Modeled consumption is computed by summing the modeled kWh over the exact billing interval. "
-                "The displayed error metric is the lowest absolute difference across invoice months."
+                "The invoice-to-model comparison was moved to the 'Billing Comparison' tab, "
+                "where it is presented only as a billing variance table."
             )
-
-        else:
-            st.metric("Total Invoice Consumption", f"{total_invoice_kwh:,.2f} kWh")
+        elif not baseline_loaded:
             st.warning(
                 "Invoice data is available, but the baseline time series could not be loaded. "
-                "Exact invoice-to-model comparison requires the baseline load time series in kW."
+                "Billing variance analysis requires the baseline load time series in kW."
             )
             st.code(f"Baseline load error: {baseline_error}")
 
@@ -563,31 +589,58 @@ with tab1:
         monthly_plot_df = monthly_energy_kwh.rename_axis("Date").reset_index(name="Energy (kWh)")
         monthly_plot_df["Month"] = monthly_plot_df["Date"].dt.strftime("%b")
 
+        # Força a ordenação correta dos meses no gráfico.
+        month_order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        monthly_plot_df["Month"] = pd.Categorical(
+            monthly_plot_df["Month"],
+            categories=month_order,
+            ordered=True,
+        )
+        monthly_plot_df = monthly_plot_df.sort_values("Month")
+
         fig_monthly = px.bar(
             monthly_plot_df,
             x="Month",
             y="Energy (kWh)",
-            text_auto=".2f",
+            text="Energy (kWh)",
             color_discrete_sequence=[COLORS["teal"]],
         )
-        fig_monthly.update_layout(
-            xaxis_title="Month",
-            yaxis_title="Energy (kWh)",
-            showlegend=False,
-        )
+
         fig_monthly.update_traces(
-            hovertemplate="<b>%{x}</b><br>Modeled consumption: %{y:,.2f} kWh<extra></extra>"
+            texttemplate="%{text:,.0f} kWh",
+            textposition="outside",
+            textfont=dict(size=13, color="black", weight="bold"),
+            marker_line_color="#A6A6A6",
+            marker_line_width=1.5,
+            hovertemplate="<b>%{x}</b><br>Consumption: %{y:,.0f} kWh<br><extra></extra>",
         )
+
+        fig_monthly = style_figure(fig_monthly, x_title="Month", y_title="Energy Consumption (kWh)")
+        fig_monthly.update_layout(height=500, margin=dict(l=80, r=60, t=60, b=80))
+
         st.plotly_chart(
             fig_monthly,
             use_container_width=True,
             key=f"overview_monthly_modeled_{selected_year}",
         )
 
+    if pv_loaded:
+        st.markdown("---")
+        st.subheader(f"PV summary - {selected_year}")
 
-# =========================================================
-# TAB 2 - DAILY PROFILE
-# =========================================================
+        annual_pv_kwh = float(pv_hourly_kwh.sum())
+        avg_daily_pv_kwh = float(pv_daily_kwh.mean())
+        peak_hour_pv_kwh = float(pv_hourly_kwh.max())
+        peak_hour_pv_ts = pv_hourly_kwh.idxmax()
+
+        p1, p2, p3 = st.columns(3)
+        p1.metric("Annual PV Production", f"{annual_pv_kwh:,.2f} kWh")
+        p2.metric("Average Daily PV Production", f"{avg_daily_pv_kwh:,.2f} kWh")
+        p3.metric("Peak Hourly PV Production", f"{peak_hour_pv_kwh:,.2f} kWh")
+
+        st.caption(f"Peak PV hour: {peak_hour_pv_ts.strftime('%d/%m/%Y %H:%M')}")
+
 
 with tab2:
     st.subheader(f"Daily Profile - {selected_year}")
@@ -598,20 +651,33 @@ with tab2:
         )
         st.code(f"Baseline load error: {baseline_error}")
     else:
+        daily_df = pd.DataFrame({
+            "Date": daily_energy_kwh.index,
+            "Consumption (kWh)": daily_energy_kwh.values,
+        })
+
         fig_daily = px.bar(
-            x=daily_energy_kwh.index,
-            y=daily_energy_kwh.values,
-            labels={"x": "Day", "y": "Daily Consumption (kWh)"},
+            daily_df,
+            x="Date",
+            y="Consumption (kWh)",
+            text="Consumption (kWh)",
+            color_discrete_sequence=[COLORS["blue"]],
         )
+
         fig_daily.update_traces(
+            texttemplate="%{text:,.0f} kWh",
+            textposition="outside",
+            textfont=dict(size=10, color="black"),
             marker_color=COLORS["blue"],
-            hovertemplate="<b>%{x|%d/%m/%Y}</b><br>Daily consumption: %{y:,.2f} kWh<extra></extra>",
+            marker_line_color="#A6A6A6",
+            marker_line_width=1,
+            hovertemplate="<b>%{x|%d/%m/%Y}</b><br>Daily consumption: %{y:,.0f} kWh<extra></extra>",
         )
-        fig_daily.update_layout(
-            xaxis_title="Day",
-            yaxis_title="Daily Consumption (kWh)",
-            showlegend=False,
-        )
+
+        fig_daily = style_figure(fig_daily, x_title="Date", y_title="Daily Consumption (kWh)")
+        fig_daily.update_xaxes(tickangle=-45, tickformat="%d/%m", dtick="M1")
+        fig_daily.update_layout(height=500, margin=dict(l=80, r=60, t=60, b=120))
+
         st.plotly_chart(
             fig_daily,
             use_container_width=True,
@@ -663,16 +729,16 @@ with tab2:
                     y="Value",
                     markers=True,
                 )
+
                 fig_hour.update_traces(
-                    line=dict(color=COLORS["red"], width=3),
-                    marker=dict(size=8, color=COLORS["red"]),
+                    line=dict(color=COLORS["red"], width=2.5),
+                    marker=dict(size=7, color=COLORS["red"], line=dict(color="white", width=1)),
                     hovertemplate="<b>%{x}</b><br>Load: %{y:,.2f} kW<extra></extra>",
                 )
-                fig_hour.update_layout(
-                    xaxis_title="Hour",
-                    yaxis_title="Load (kW)",
-                    showlegend=False,
-                )
+
+                fig_hour = style_figure(fig_hour, x_title="Hour", y_title="Load (kW)")
+                fig_hour.update_layout(height=450, margin=dict(l=80, r=60, t=40, b=80))
+
                 st.plotly_chart(
                     fig_hour,
                     use_container_width=True,
@@ -688,27 +754,28 @@ with tab2:
                     plot_df,
                     x="Hour",
                     y="Value",
-                    text_auto=".2f",
+                    text="Value",
+                    color_discrete_sequence=[COLORS["orange"]],
                 )
+
                 fig_hour.update_traces(
-                    marker_color=COLORS["orange"],
+                    texttemplate="%{text:,.2f} kWh",
+                    textposition="outside",
+                    textfont=dict(size=11, color="black"),
+                    marker_line_color="#A6A6A6",
+                    marker_line_width=1,
                     hovertemplate="<b>%{x}</b><br>Consumption: %{y:,.2f} kWh<extra></extra>",
                 )
-                fig_hour.update_layout(
-                    xaxis_title="Hour",
-                    yaxis_title="Consumption (kWh)",
-                    showlegend=False,
-                )
+
+                fig_hour = style_figure(fig_hour, x_title="Hour", y_title="Consumption (kWh)")
+                fig_hour.update_layout(height=450, margin=dict(l=80, r=60, t=40, b=80))
+
                 st.plotly_chart(
                     fig_hour,
                     use_container_width=True,
                     key=f"selected_day_energy_{selected_year}_{selected_day_ts.strftime('%Y%m%d')}",
                 )
 
-
-# =========================================================
-# TAB 3 - CATEGORIES
-# =========================================================
 
 with tab3:
     st.subheader(f"Categories - {selected_year}")
@@ -729,10 +796,31 @@ with tab3:
                 hole=0.45,
                 color_discrete_sequence=px.colors.qualitative.Set2,
             )
+
             fig_pie.update_traces(
                 textinfo="percent+label",
+                textposition="inside",
+                textfont=dict(size=13, color="black", weight="bold"),
+                insidetextorientation="auto",
+                marker=dict(line=dict(color="white", width=2)),
                 hovertemplate="<b>%{label}</b><br>Energy: %{value:,.2f} kWh<br>Share: %{percent}<extra></extra>",
             )
+
+            fig_pie.update_layout(
+                paper_bgcolor="white",
+                plot_bgcolor="white",
+                font=dict(family="Arial, sans-serif", size=13, color="black"),
+                margin=dict(l=40, r=40, t=60, b=40),
+                showlegend=True,
+                legend=dict(
+                    bgcolor="white",
+                    bordercolor="#D9D9D9",
+                    borderwidth=1,
+                    font=dict(size=12, color="black"),
+                ),
+                height=500,
+            )
+
             st.plotly_chart(
                 fig_pie,
                 use_container_width=True,
@@ -746,18 +834,23 @@ with tab3:
                 x="Energy (kWh)",
                 y="Category",
                 orientation="h",
-                text_auto=".2f",
+                text="Energy (kWh)",
                 color="Category",
                 color_discrete_sequence=px.colors.qualitative.Set2,
             )
-            fig_rank.update_layout(
-                xaxis_title="Energy (kWh)",
-                yaxis_title="Category",
-                showlegend=False,
-            )
+
             fig_rank.update_traces(
-                hovertemplate="<b>%{y}</b><br>Energy: %{x:,.2f} kWh<extra></extra>"
+                texttemplate="%{text:,.2f} kWh",
+                textposition="outside",
+                textfont=dict(size=11, color="black"),
+                marker_line_color="#A6A6A6",
+                marker_line_width=1,
+                hovertemplate="<b>%{y}</b><br>Energy: %{x:,.2f} kWh<extra></extra>",
             )
+
+            fig_rank = style_figure(fig_rank, x_title="Energy (kWh)", y_title="Category")
+            fig_rank.update_layout(height=500, margin=dict(l=120, r=60, t=40, b=80), showlegend=False)
+
             st.plotly_chart(
                 fig_rank,
                 use_container_width=True,
@@ -777,10 +870,6 @@ with tab3:
         )
 
 
-# =========================================================
-# TAB 4 - BILLING COMPARISON
-# =========================================================
-
 with tab4:
     st.subheader(f"Billing Comparison - {selected_year}")
 
@@ -798,7 +887,7 @@ with tab4:
                 - **PHP (kW)**: power registered during peak hours (*Potência em Horas de Ponta*).
                 - **PC (kW)**: contracted power (*Potência Contratada*).
                 - **MIBEL (EUR)**: adjustment or market component related to the Iberian Electricity Market (*Mercado Ibérico de Eletricidade*).
-                - **VAT**: Value Added Tax. “Total Cost ex VAT” means total cost excluding VAT.
+                - **VAT**: Value Added Tax. "Total Cost ex VAT" means total cost excluding VAT.
 
                 **Note:** exact acronym definitions may vary slightly depending on supplier wording and tariff contract, but these are the standard meanings used in Portuguese electricity billing.
                 """
@@ -882,15 +971,7 @@ with tab4:
         )
 
         if baseline_loaded and not comparison_df.empty:
-            st.markdown("### Exact invoice vs modeled comparison")
-
-            lowest_error_row = get_lowest_error_row(comparison_df)
-            st.metric(
-                "Lowest Absolute Error",
-                f"{lowest_error_row['Absolute Difference (kWh)']:,.2f} kWh",
-                help=f"Observed in {lowest_error_row['Month']}. Calculated as the absolute difference between invoice consumption and modeled billing-period consumption.",
-            )
-            st.caption(f"Month with lowest absolute error: {lowest_error_row['Month']}")
+            st.markdown("### Billing variance table")
 
             comparison_display = format_date_columns(
                 comparison_df[
@@ -903,8 +984,8 @@ with tab4:
                         "Billing Days",
                         "Invoice Consumption (kWh)",
                         "Modeled Consumption Billing Period (kWh)",
-                        "Difference (kWh)",
-                        "Coverage (%)",
+                        "Billing Variance (kWh)",
+                        "Billing Variance (%)",
                     ]
                 ],
                 ["Issue Date", "Billing Start", "Billing End"],
@@ -915,171 +996,203 @@ with tab4:
                     {
                         "Invoice Consumption (kWh)": "{:,.2f}",
                         "Modeled Consumption Billing Period (kWh)": "{:,.2f}",
-                        "Difference (kWh)": "{:,.2f}",
-                        "Coverage (%)": "{:.2f}",
+                        "Billing Variance (kWh)": "{:,.2f}",
+                        "Billing Variance (%)": "{:.2f}",
                     }
                 ),
                 use_container_width=True,
                 hide_index=True,
             )
 
-            plot_df = comparison_df.melt(
-                id_vars=["Month"],
-                value_vars=[
-                    "Invoice Consumption (kWh)",
-                    "Modeled Consumption Billing Period (kWh)",
-                ],
-                var_name="Series",
-                value_name="Energy (kWh)",
-            )
-
-            label_map = {
-                "Invoice Consumption (kWh)": "Invoice Consumption",
-                "Modeled Consumption Billing Period (kWh)": "Modeled Consumption (Exact Billing Period)",
-            }
-            plot_df["Series"] = plot_df["Series"].map(label_map)
-
-            fig_compare = px.bar(
-                plot_df,
-                x="Month",
-                y="Energy (kWh)",
-                color="Series",
-                barmode="group",
-                text_auto=".2f",
-                color_discrete_map={
-                    "Invoice Consumption": COLORS["blue"],
-                    "Modeled Consumption (Exact Billing Period)": COLORS["orange"],
-                },
-            )
-            fig_compare.update_layout(
-                xaxis_title="Month",
-                yaxis_title="Energy (kWh)",
-                legend_title="Series",
-            )
-            fig_compare.update_traces(
-                hovertemplate="<b>%{x}</b><br>%{fullData.name}: %{y:,.2f} kWh<extra></extra>"
-            )
-            st.plotly_chart(
-                fig_compare,
-                use_container_width=True,
-                key=f"billing_compare_chart_{selected_year}",
-            )
-
-            st.markdown("### Selected invoice month detail")
-
-            selected_month = st.selectbox(
-                "Select invoice month",
-                options=comparison_df["Month"].tolist(),
-                index=0,
-                key="selected_billing_month_detail",
-            )
-
-            selected_row = comparison_df[comparison_df["Month"] == selected_month].iloc[0]
-
-            d1, d2, d3, d4 = st.columns(4)
-            d1.metric("Invoice Number", selected_row["Invoice Number"])
-            d2.metric(
-                "Billing Period",
-                f"{selected_row['Billing Start'].strftime('%d/%m/%Y')} - {selected_row['Billing End'].strftime('%d/%m/%Y')}",
-            )
-            d3.metric("Invoice Consumption", f"{selected_row['Invoice Consumption (kWh)']:,.2f} kWh")
-            d4.metric(
-                "Modeled Consumption",
-                f"{selected_row['Modeled Consumption Billing Period (kWh)']:,.2f} kWh",
-            )
-
-            selected_components = pd.DataFrame(
-                {
-                    "Tariff Period": ["HSV", "HVN", "HP", "HC"],
-                    "Energy (kWh)": [
-                        selected_row["HSV (kWh)"],
-                        selected_row["HVN (kWh)"],
-                        selected_row["HP (kWh)"],
-                        selected_row["HC (kWh)"],
-                    ],
-                }
-            )
-
-            fig_components = px.bar(
-                selected_components,
-                x="Tariff Period",
-                y="Energy (kWh)",
-                color="Tariff Period",
-                text_auto=".2f",
-                color_discrete_sequence=px.colors.qualitative.Set2,
-            )
-            fig_components.update_layout(
-                xaxis_title="Tariff Period",
-                yaxis_title="Energy (kWh)",
-                showlegend=False,
-            )
-            fig_components.update_traces(
-                hovertemplate="<b>%{x}</b><br>Energy: %{y:,.2f} kWh<extra></extra>"
-            )
-            st.plotly_chart(
-                fig_components,
-                use_container_width=True,
-                key=f"billing_components_{selected_year}_{selected_month}",
-            )
-
-            summary_table = pd.DataFrame(
-                {
-                    "Field": [
-                        "Supplier",
-                        "Invoice Number",
-                        "Issue Date",
-                        "Billing Start",
-                        "Billing End",
-                        "Billing Days",
-                        "Invoice Consumption (kWh)",
-                        "Modeled Consumption Billing Period (kWh)",
-                        "Difference (kWh)",
-                        "Coverage (%)",
-                        "Reactive Energy (kvarh)",
-                        "PHP (kW)",
-                        "PC (kW)",
-                        "Tax (EUR)",
-                        "Regulation Band (EUR)",
-                        "MIBEL (EUR)",
-                        "Total Cost ex VAT (EUR)",
-                    ],
-                    "Value": [
-                        selected_row["Supplier"],
-                        selected_row["Invoice Number"],
-                        selected_row["Issue Date"].strftime("%d/%m/%Y"),
-                        selected_row["Billing Start"].strftime("%d/%m/%Y"),
-                        selected_row["Billing End"].strftime("%d/%m/%Y"),
-                        f"{selected_row['Billing Days']}",
-                        f"{selected_row['Invoice Consumption (kWh)']:,.2f}",
-                        f"{selected_row['Modeled Consumption Billing Period (kWh)']:,.2f}",
-                        f"{selected_row['Difference (kWh)']:,.2f}",
-                        f"{selected_row['Coverage (%)']:.2f}",
-                        f"{selected_row['Reactive Energy (kvarh)']:,.2f}",
-                        f"{selected_row['PHP (kW)']:,.2f}",
-                        f"{selected_row['PC (kW)']:,.2f}",
-                        f"{selected_row['Tax (EUR)']:,.2f}",
-                        f"{selected_row['Regulation Band (EUR)']:,.2f}",
-                        f"{selected_row['MIBEL (EUR)']:,.2f}",
-                        f"{selected_row['Total Cost ex VAT (EUR)']:,.2f}",
-                    ],
-                }
-            )
-
-            st.dataframe(
-                summary_table,
-                use_container_width=True,
-                hide_index=True,
-            )
-
-            st.success(
-                "This comparison uses exact invoice billing dates and computes modeled consumption "
-                "from the modeled time series over those exact dates. "
-                "Units are consistent: power in kW and energy in kWh."
+            st.info(
+                "Billing variance is calculated over the exact invoice billing dates. "
+                "Formula used: modeled consumption minus invoiced consumption. "
+                "Negative values indicate the model is below invoiced consumption; "
+                "positive values indicate the model is above invoiced consumption."
             )
 
         else:
             st.warning(
-                "Invoice data is available, but modeled billing-period comparison is not available "
+                "Invoice data is available, but billing variance is not available "
                 "because the baseline time series could not be loaded."
             )
             st.code(f"Baseline load error: {baseline_error}")
+
+
+with tab5:
+    st.subheader(f"PV Production - {selected_year}")
+
+    if not pv_loaded:
+        st.warning(
+            "PV production is not available because the PV file could not be loaded or contains no data for the selected year."
+        )
+        st.code(f"PV load error: {pv_error}")
+    else:
+        annual_pv_kwh = float(pv_hourly_kwh.sum())
+        average_daily_pv_kwh = float(pv_daily_kwh.mean()) if not pv_daily_kwh.empty else 0.0
+        peak_hourly_pv_kwh = float(pv_hourly_kwh.max()) if not pv_hourly_kwh.empty else 0.0
+        peak_hourly_pv_ts = pv_hourly_kwh.idxmax() if not pv_hourly_kwh.empty else None
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Annual PV Production", f"{annual_pv_kwh:,.2f} kWh")
+        c2.metric("Average Daily PV Production", f"{average_daily_pv_kwh:,.2f} kWh")
+        c3.metric("Peak Hourly PV Production", f"{peak_hourly_pv_kwh:,.2f} kWh")
+
+        if peak_hourly_pv_ts is not None:
+            st.caption(f"Peak PV hour: {peak_hourly_pv_ts.strftime('%d/%m/%Y %H:%M')}")
+
+        st.info(
+            "PV hourly production is computed from the CSV values by summing the PV power samples "
+            "within each hour after converting them to energy. "
+            "Assumption used: values are in W, so kWh = Σ(W × Δt[h]) / 1000."
+        )
+
+        monthly_pv_df = pv_monthly_kwh.rename_axis("Date").reset_index(name="Energy (kWh)")
+        monthly_pv_df["Month"] = monthly_pv_df["Date"].dt.strftime("%b")
+
+        # Força a ordenação correta dos meses no gráfico.
+        month_order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        monthly_pv_df["Month"] = pd.Categorical(
+            monthly_pv_df["Month"],
+            categories=month_order,
+            ordered=True,
+        )
+        monthly_pv_df = monthly_pv_df.sort_values("Month")
+
+        fig_monthly_pv = px.bar(
+            monthly_pv_df,
+            x="Month",
+            y="Energy (kWh)",
+            text="Energy (kWh)",
+            color_discrete_sequence=[COLORS["yellow"]],
+        )
+
+        fig_monthly_pv.update_traces(
+            texttemplate="%{text:,.0f} kWh",
+            textposition="outside",
+            textfont=dict(size=13, color="black", weight="bold"),
+            marker_line_color="#A6A6A6",
+            marker_line_width=1.5,
+            hovertemplate="<b>%{x}</b><br>PV production: %{y:,.0f} kWh<extra></extra>",
+        )
+
+        fig_monthly_pv = style_figure(fig_monthly_pv, x_title="Month", y_title="PV Production (kWh)")
+        fig_monthly_pv.update_layout(height=500, margin=dict(l=80, r=60, t=60, b=80))
+
+        st.plotly_chart(
+            fig_monthly_pv,
+            use_container_width=True,
+            key=f"pv_monthly_{selected_year}",
+        )
+
+        daily_pv_df = pd.DataFrame({
+            "Date": pv_daily_kwh.index,
+            "PV Production (kWh)": pv_daily_kwh.values,
+        })
+
+        fig_daily_pv = px.bar(
+            daily_pv_df,
+            x="Date",
+            y="PV Production (kWh)",
+            text="PV Production (kWh)",
+            color_discrete_sequence=[COLORS["green"]],
+        )
+
+        fig_daily_pv.update_traces(
+            texttemplate="%{text:,.0f} kWh",
+            textposition="outside",
+            textfont=dict(size=10, color="black"),
+            marker_line_color="#A6A6A6",
+            marker_line_width=1,
+            hovertemplate="<b>%{x|%d/%m/%Y}</b><br>PV production: %{y:,.0f} kWh<extra></extra>",
+        )
+
+        fig_daily_pv = style_figure(fig_daily_pv, x_title="Date", y_title="PV Production (kWh)")
+        fig_daily_pv.update_xaxes(tickangle=-45, tickformat="%d/%m", dtick="M1")
+        fig_daily_pv.update_layout(height=500, margin=dict(l=80, r=60, t=60, b=120))
+
+        st.plotly_chart(
+            fig_daily_pv,
+            use_container_width=True,
+            key=f"pv_daily_{selected_year}",
+        )
+
+        st.markdown("### Selected day PV analysis")
+
+        available_pv_days = [d.date() for d in pv_daily_kwh.index]
+        default_pv_day = available_pv_days[0] if available_pv_days else None
+
+        if default_pv_day is not None:
+            selected_pv_day = st.selectbox(
+                "Select PV day",
+                options=available_pv_days,
+                index=0,
+                format_func=lambda d: pd.Timestamp(d).strftime("%d-%m-%Y"),
+                key="selected_pv_day",
+            )
+
+            selected_pv_day_ts = pd.Timestamp(selected_pv_day)
+            next_pv_day_ts = selected_pv_day_ts + pd.Timedelta(days=1)
+
+            day_hourly_pv_kwh = pv_hourly_kwh[
+                (pv_hourly_kwh.index >= selected_pv_day_ts) & (pv_hourly_kwh.index < next_pv_day_ts)
+            ]
+
+            day_pv_power_w = pv_total_power_w[
+                (pv_total_power_w.index >= selected_pv_day_ts) & (pv_total_power_w.index < next_pv_day_ts)
+            ]
+
+            if not day_hourly_pv_kwh.empty:
+                day_pv_df = pd.DataFrame({
+                    "Hour": day_hourly_pv_kwh.index,
+                    "Production (kWh)": day_hourly_pv_kwh.values,
+                })
+
+                fig_day_pv = px.bar(
+                    day_pv_df,
+                    x="Hour",
+                    y="Production (kWh)",
+                    text="Production (kWh)",
+                    color_discrete_sequence=[COLORS["yellow"]],
+                )
+
+                fig_day_pv.update_traces(
+                    texttemplate="%{text:,.3f} kWh",
+                    textposition="outside",
+                    textfont=dict(size=11, color="black"),
+                    marker_line_color="#A6A6A6",
+                    marker_line_width=1,
+                    hovertemplate="<b>%{x|%d/%m/%Y %H:%M}</b><br>PV production: %{y:,.3f} kWh<extra></extra>",
+                )
+
+                fig_day_pv = style_figure(fig_day_pv, x_title="Hour", y_title="PV Production (kWh)")
+                fig_day_pv.update_xaxes(tickformat="%H:%M")
+                fig_day_pv.update_layout(height=450, margin=dict(l=80, r=60, t=40, b=80))
+
+                st.plotly_chart(fig_day_pv, use_container_width=True)
+
+            if not day_pv_power_w.empty:
+                day_power_df = pd.DataFrame({
+                    "Hour": day_pv_power_w.index,
+                    "Power (kW)": day_pv_power_w.values / 1000.0,
+                })
+
+                fig_day_power = px.line(
+                    day_power_df,
+                    x="Hour",
+                    y="Power (kW)",
+                    markers=True,
+                )
+
+                fig_day_power.update_traces(
+                    line=dict(color=COLORS["green"], width=2.5),
+                    marker=dict(size=7, color=COLORS["green"], line=dict(color="white", width=1)),
+                    hovertemplate="<b>%{x|%d/%m/%Y %H:%M}</b><br>PV power: %{y:,.2f} kW<extra></extra>",
+                )
+
+                fig_day_power = style_figure(fig_day_power, x_title="Hour", y_title="PV Power (kW)")
+                fig_day_power.update_xaxes(tickformat="%H:%M")
+                fig_day_power.update_layout(height=450, margin=dict(l=80, r=60, t=40, b=80))
+
+                st.plotly_chart(fig_day_power, use_container_width=True)
